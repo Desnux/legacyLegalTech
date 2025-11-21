@@ -1,0 +1,31 @@
+services:
+  api:
+    image: ${ECR_REGISTRY}/legal-strategist-api:${IMAGE_TAG:-latest}
+    restart: always
+    environment:
+      AUTH_TOKEN: ${AUTH_TOKEN}
+      EMAIL_BLACKLIST: ${EMAIL_BLACKLIST}
+      EMAIL_WHITELIST: ${EMAIL_WHITELIST}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      RESPOND_EMAIL_WEBHOOK_URL: ${RESPOND_EMAIL_WEBHOOK_URL}
+      SEND_EMAIL_WEBHOOK_URL: ${SEND_EMAIL_WEBHOOK_URL}
+      DB_USERNAME: postgres
+      DB_PASSWORD: titangroup123456
+      DB_HOST: ${DB_HOST}
+      DB_PORT: 5432
+      DB_DATABASE: titangroup
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      S3_BUCKET: ${S3_BUCKET}
+      TWO_CAPTCHA_KEY: ${TWO_CAPTCHA_KEY}
+      DEBUG_MODE: ${DEBUG_MODE:-false}
+    ports:
+      - "8100:8100"
+    command: ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port 8100"]
+    
+  web:
+    image: ${ECR_REGISTRY}/legal-strategist-web:${IMAGE_TAG:-latest}
+    restart: always
+    ports:
+      - "3002:3002"

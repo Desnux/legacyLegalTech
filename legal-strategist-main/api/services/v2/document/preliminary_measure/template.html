@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Medida Prejudicial</title>
+    <style>
+        @page {
+            size: 21.59cm 33.02cm;
+            margin-top: 3cm;
+            margin-right: 3cm;
+            margin-bottom: 3cm;
+            margin-left: 3cm;
+
+            @bottom-right {
+                content: counter(page);
+                font-size: 9pt;
+                text-align: right;
+                font-family: Verdana, sans-serif;
+            }
+            
+            @footnote {
+                border-top: 2px solid black;
+                padding-top: 2px;
+            }
+        }
+        body {
+            font-family: Verdana, sans-serif;
+            font-size: 11pt;
+            padding: 0px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+        h1 {
+            text-align: center;
+            font-size: 11pt;
+            margin-bottom: 4.5em;
+            margin-top: 4.5em;
+        }
+        h2 {
+            line-height: 1.8;
+            font-size: 11pt;
+            text-align: justify;
+            margin: 0;
+            padding: 0;
+        }
+        sup {
+            font-size: 8pt;
+        }
+        .section-header {
+            break-inside: avoid;
+        }
+        span.footnote { 
+            float: footnote;
+            font-size: 9pt;
+            font-style: normal;
+            line-height: 1.4;
+        }
+        ::footnote-call {
+            font-size: 8pt; 
+            font-style: normal;
+            vertical-align: super;
+            text-align: left;
+        }
+        .hidden {
+            height: 0;
+            width: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .bold-underline {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .content {
+            text-indent: 1.25cm;
+        }
+        .enumeration-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .enumeration-table td {
+            vertical-align: top;
+            padding-bottom: 0.5cm;
+        }
+        td.enumeration-number {
+            text-align: left;
+            width: 1.25cm;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+        .enumeration-text-parent {
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .enumeration-text {
+            line-height: 1.8;
+            text-align: justify;
+            page-break-inside: auto;
+            display: block;
+        }
+        .quote {
+            margin-left: 1.25cm;
+            margin-right: 0;
+            font-style: italic;
+            padding: 0;
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+        .straigth {
+            font-style: normal;
+        }
+        .summary {
+            line-height: 1.8;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .margin-top {
+            margin-top: 1em;
+            margin-bottom: 0;
+        }
+        .additionals tr {
+            break-inside: avoid;
+        }
+        .header-item {
+            display: grid;
+            grid-template-columns: 1.25cm 1fr;
+            column-gap: 0;
+            align-items: flex-start;
+            margin-bottom: 0.75em;
+        }
+        .header-number {
+            flex-shrink: 0;
+            text-align: left;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+        .subheader-number {
+            flex-shrink: 0;
+            padding-left: 1.25cm;
+            text-align: left;
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+        .subheader-item {
+            display: grid;
+            grid-template-columns: 2.5cm 1fr;
+            column-gap: 0;
+            align-items: flex-start;
+            margin-bottom: 0.75em;
+        }
+        .header-text {
+            line-height: 1.8;
+            text-align: justify;
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+        .flow-enumeration-item {
+            counter-increment: enum;
+            position: relative;
+            padding-left: 1.25cm;
+            margin-bottom: 0.75em;
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+        .flow-enumeration-item .flow-enumeration-text::before {
+            content: counter(enum) ". ";
+            position: absolute;
+            left: 0;
+            width: 1.25cm;                   
+            text-align: left;
+            page-break-after: avoid;         
+            break-after: avoid-page;         
+        }
+        .flow-section-header {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        .flow-enumeration-text {
+            line-height: 1.8;
+            text-align: justify;
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+        .annex-enumeration {
+            counter-reset: annex-enum;
+        }
+        .annex-enumeration .flow-enumeration-item {
+            counter-increment: annex-enum;
+        }
+        .annex-enumeration .flow-enumeration-item .flow-enumeration-text::before {
+            content: counter(annex-enum) ". ";
+        }
+    </style>
+</head>
+<body>
+    <p class="summary">
+        <span class="bold-underline">EN LO PRINCIPAL</span>: Medida prejudicial de suspensión de 
+        cancelación de cargos y/o restitución de fondos conforme al artículo 5 bis de la Ley 20.009; 
+        <span class="bold-underline">PRIMER OTROSÍ</span>: Solicitud que se indica; 
+        <span class="bold-underline">SEGUNDO OTROSÍ</span>: Solicitan se designe receptor 
+        <span class="italic">ad/hoc</span>; <span class="bold-underline">TERCER OTROSÍ</span>: 
+        Solicitan forma de notificación que indican; <span class="bold-underline">CUARTO OTROSÍ</span>: 
+        Acompañan y acreditan personería, con citación; <span class="bold-underline">QUINTO OTROSÍ</span>: 
+        Patrocinio y poder; <span class="bold-underline">SEXTO OTROSÍ</span>: Acompañan documentos, con 
+        citación.
+    </p>
+    <h1>{{ title }}</h1>
+    <p class="content">
+        <b>CIRO COLOMBARA LÓPEZ</b> y <b>ALDO DÍAZ CANALES</b>, abogados, en representación convencial, 
+        tal como se acreditará, de la solicitante, <b>COOPERATIVA COOPEUCH LTDA.</b> (en adelante, 
+        “<b>COOPEUCH</b>”), sociedad de giro de su denominación, RUT Nº 82.878.900-7, todos domiciliados 
+        en Alonso de Córdova Nº 4.355, piso Nº 14, comuna de Vitacura, a S.S. con respeto decimos:
+    </p>
+    <p class="content">
+        Que, dentro de plazo, y de conformidad a lo previsto en el artículo 5º bis de la Ley 20.009, 
+        venimos en solicitar a S.S. se sirva decretar la <span class="bold-underline">medida prejudicial</span> 
+        de autorización de mantención de la suspensión de la cancelación de cargos y/o restitución de fondos 
+        respecto de <b>{{ "doña" if claimant_partner.gender == Gender.FEMALE else "don" }} 
+        {{ claimant_partner.name.upper() }}</b> (en adelante, 
+        “{{ "la usuaria" if claimant_partner.gender == Gender.FEMALE else "el usuario" }}”, 
+        o “la contraparte”), cédula de identidad Nº <b>{{ claimant_partner.rut }}</b>, 
+        {{ "domiciliada" if claimant_partner.gender == Gender.FEMALE else "domiciliado" }} en 
+        <b>{{ claimant_partner.affidavit_address }}</b>, con el objeto de que S.S. acoja la presente medida 
+        prejudicial y, en definitiva, declare que COOPEUCH está autorizada para mantener la suspensión de la 
+        cancelación de cargos y/o restitución de fondos hasta el monto de 
+        <b>{{ total_transaction_amount }}</b>, correspondiente a la suma 
+        reclamada por la contraparte; con costas, todo ello en virtud de los argumentos de hecho y de derecho 
+        que se exponen a continuación:
+    </p>
+
+    <div class="header-item flow-section-header">
+        <div class="header-number"><b>I.</b></div>
+        <div class="header-text">
+            <h2 class="hidden">
+                I. SOBRE LA LEY DE FRAUDES Y SUS MODIFICACIONES PARA DESINCENTIVAR LOS FRAUDES SIMULADOS.
+            </h2>
+            <span class="bold-underline">
+                SOBRE LA LEY DE FRAUDES Y SUS MODIFICACIONES PARA DESINCENTIVAR LOS FRAUDES SIMULADOS.
+            </span>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            La Ley 20.009, que establece un régimen de limitación de responsabilidad para titulares o usuarios 
+            de tarjetas de pago y transacciones electrónicas en caso de extravío, hurto, robo o fraude, 
+            conocida como “Ley de Fraudes”, reformada por la Ley 21.234, y por la reciente Ley 21.673, ha 
+            destacado en los últimos años por los abusos que se han producido de parte de personas que simulan 
+            falsos fraudes, o autofraudes.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Recientemente los y las especialistas en derechos de las personas consumidoras han documentado 
+            esta realidad. Así, el profesor JAIME LORENZINI ha señalado, en columna de fecha 9 de marzo de 
+            2024, lo siguiente:
+            <blockquote class="quote">
+                “La actual redacción de la Ley 20.009 (“Ley de Fraudes”) ha generado un espacio para que se 
+                produzcan situaciones indeseadas, tales como el desconocimiento por parte de usuarios de 
+                transacciones realizadas debido a sus propios descuidos hasta conductas de autofraude”.<span class="footnote">
+                    LORENZINI, Jaime (2024). <span class="italic">Ley de fraudes</span> en La Tercera, 9 de 
+                    marzo de 2024. Disponible en: https://www.latercera.com/opinion/noticia/ley-de-fraudes/LTTMGEXENRF5RIH5P6S7K7AHYY/#
+                </span>
+            </blockquote>
+         </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            En el mismo sentido, la profesora ERIKA ISLER se ha pronunciado acerca del abuso del derecho que 
+            se verifica por parte de los usuarios de los mecanismos consagrados en la Ley 20.009:
+            <blockquote class="quote">
+                “Naturalmente, ni la Ley 21.234 ni la Ley 19.496 sobre Protección de los Derechos de los 
+                Consumidores tiene por objeto conferir a los consumidores derechos absolutos que pueda ejercer 
+                a todo evento. De esta manera, cuando intente vulnerar el interés protegido por la norma, 
+                <b>
+                    torciendo el propósito legislativo para obtener un provecho contrario al permitido a 
+                    sabiendas, se configurará un supuesto de abuso del derecho que no es digno de amparo 
+                </b> (Fueyo Laneri, Domínguez Águila).
+                <br>
+                <br>
+                Resulta evidente que quien alega un fraude inexistente, solicitando la restitución de un 
+                dinero que nunca ha salido de su patrimonio, con pleno conocimiento de su verdadera situación, 
+                no se encuentra cubierto por la Ley 20.009 y por lo tanto, no tiene derecho a ser oído, sin 
+                perjuicio de otras formas de responsabilidad en las que pudiere incurrir”.<span class="footnote">
+                    ISLER, Erika (2024). <i>Ley de fraudes y abuso del derecho,</i> 
+                    en Estado Diario. Disponible en: https://estadodiario.com/compliance/ley-de-fraudes-y-abuso-del-derecho/
+                </span><span class="straigth"> (Énfasis añadido).</span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            La doctrina extranjera y, en especial, el profesor de derecho civil LUIS DÍEZ-PICAZO Y PONCE DE 
+            LEÓN, cita la sentencia del Tribunal Supremo español de 14 de febrero de 1944, que define con 
+            precisión lo que ha de entenderse por abuso del derecho:
+            <blockquote class="quote">
+                “... los derechos subjetivos, aparte de sus límites legales, con frecuencia defectuosamente 
+                precisados, tienen otros de orden moral, teleológico y social, e incurre en responsabilidad 
+                el que, obrando al amparo de una legalidad externa y de un aparente ejercicio de su derecho, 
+                traspasa, en realidad, los linderos impuestos al mismo por la equidad y la buena fe, con daño 
+                para terceros o para la sociedad; tesis ésta que ha sido patrocinada también por la doctrina 
+                científica patria, que ha reconocido y perfilado el concepto del abuso del derecho, 
+                considerándolo integrado por estos elementos esenciales: a) uso de un derecho objetivo o 
+                externamente legal; b) daño a un interés no protegido por una específica prerrogativa 
+                jurídica; y, e) inmoralidad o antisocialidad de ese daño, manifestada en forma subjetiva 
+                (cuando el derecho se actúa con la intención de perjudicar o sencillamente sin un fin serio y 
+                legítimo) o bajo forma objetiva (cuando el daño proviene de exceso o anormalidad en el 
+                ejercicio del derecho)”.<span class="footnote">
+                    Díez-Picazo y Ponce de León, L. (1992). El abuso del derecho y el fraude de la ley en el 
+                    nuevo Título Preliminar del Código Civil español y el problema de sus recíprocas 
+                    relaciones. <i>IUS ET VERITAS, 3</i>(5), 5-14. Recuperado a partir de 
+                    https://revistas.pucp.edu.pe/index.php/iusetveritas/article/view/15338
+                </span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Sobre el ejercicio abusivo de un derecho, el profesor FERNANDO FUEYO LANERI documentó, lo 
+            siguiente:
+            <blockquote class="quote">
+                “Al igual que en el caso de temas como el daño moral, el enriquecimiento sin causa, la 
+                doctrina de los actos propios, y otros muchos, no ha sido indispensable una formulación 
+                legislativa para que la teoría del abuso del derecho haya sido admitida en el orden 
+                jurídico vigente y se le aplique concretamente en casos judiciales que se han presentado 
+                a este respecto. La fuerza creadora que nace de la fenomenología que reclama la 
+                aplicación del principio, sobrepasa evidentemente el silencio de la ley en su texto 
+                expreso”.<span class="footnote">
+                    Fueyo Laneri, F. (1989). El ejercicio abusivo del derecho. Estudios De Derecho, 
+                    47(113-4), 57–98. 
+                    <a href="https://doi.org/10.17533/udea.esde.332490" target="_blank">
+                        https://doi.org/10.17533/udea.esde.332490
+                    </a>. P. 64.
+                </span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            En cuanto a la sustancia del asunto, el mismo profesor hace referencia a la repugnancia que 
+            genera el abuso del derecho a nuestro ordenamiento jurídico:
+            <blockquote class="quote">
+                “Si el legislador nos concede unas prerrogativas, ha sido con un fin determinado y, en 
+                caso alguno, para sobrepasar manifiestamente los límites normales o racionales del 
+                ejercicio de un derecho, mucho menos si con ello, además, ha de causarse daño a otro”.<span class="footnote">
+                    <i>Idem,</i> p. 66.
+                </span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Así, se configura una hipótesis de abuso del derecho cuando el fraude reclamado es inexistente, 
+            es decir, cuando se utiliza el mecanismo de la Ley 20.009 para obtener un provecho contrario al 
+            permitido. Se obtiene un provecho contrario al permitido cuando, como ocurre en este caso, lo 
+            ocurrido no fue un fraude en que se sustrajeron los dineros de una persona desde su cuenta 
+            bancaria, sino que esta misma los manipuló para generar una apariencia de fraude.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Las preocupaciones de juristas especializados en el área se explican por la alarmante alza que 
+            registraron los reclamos por supuestos fraudes durante el año 2022:
+            <blockquote class="quote">
+                “Según detalló la ABIF, el monto estimado a pagos por fraude asciende a US$350 millones en 
+                doce meses, lo que representa un importante incremento con respecto al 2022. A la vez, que 
+                el número de personas que han denunciado fraude llegaron a 250 mil en el primer semestre, 
+                lo que representa un incremento de 130% respecto al mismo periodo de 2022”.<span class="footnote">
+                    La Tercera (4 de enero de 2024). <i>Ley de fraudes: ABIF estima pagos por US$350 millones en 2023.</i> 
+                    Disponible en: 
+                    https://www.latercera.com/pulso/noticia/ley-de-fraudes-abif-estima-pagos-por-us350-millones-en-2023/R4LHIGQZABA3RCPXXDSKECLCRE/#
+                </span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Las opiniones de expertos/as en la materia han llevado al poder legislativo a promulgar la 
+            reciente Ley 21.673, que desincentiva, mediante una serie de mecanismos, la perpetuación de 
+            los abusos que se verificaban bajo el amparo del régimen legal anterior.
+        </div>
+    </div>
+
+    <div class="header-item flow-section-header">
+        <div class="header-number"><b>II.</b></div>
+        <div class="header-text">
+            <h2 class="hidden">
+                II. SOBRE EL DOLO O, EN SUBSIDIO, LA CULPA GRAVE DE LA CONTRAPARTE.
+            </h2>
+            <span class="bold-underline">
+                SOBRE EL DOLO O, EN SUBSIDIO, LA CULPA GRAVE DE LA CONTRAPARTE.
+            </span>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Como resulta del todo evidente, las preocupaciones de las y los especialistas en derecho 
+            bancario y del consumo, no nacen de la nada. El presente caso muestra todas las señales 
+            correspondientes a un reclamo por desconocimiento de transacciones ingresado fraudulentamente 
+            por el propio usuario, es decir, un falso fraude o autofraude, o bien, en subsidio, un caso en 
+            que el usuario facilitó su ocurrencia mediante su propio dolo o, en subsidio, culpa grave.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Con fecha {{ complaint_date }}, la contraparte ingresó un requerimiento por desconocimiento 
+            de movimientos a través de la casilla de correo electrónico dispuesta para tales efectos por 
+            COOPEUCH (solicitud.documentos@coopeuch.cl), desconociendo {{ number_of_transactions | num_to_words }} 
+            {{ "movimiento bancario consistente" if number_of_transactions == 1 else "movimientos bancarios consistentes" }} 
+            en {{ chapter_ii_paragraphs[0].body|safe }}.<span class="footnote">La declaración jurada que hace efectivo el reclamo 
+            conforme exige el artículo 4, inciso 3° de la Ley 20.009, fue enviada con fecha {{ complaint_date }}</span> 
+            El requerimiento de la contraparte alertó al Departamento de Prevención y Gestión de 
+            Fraude de nuestra representada, ya que presentó varios indicios y evidencias que permiten 
+            calificarlo como uno en que la contraparte incurrió en dolo o (en subsidio) culpa grave, 
+            las cuales se resumen en los puntos siguientes:
+        </div>
+    </div>
+    {% set ns = namespace(sub_index=1) %}
+    {% set roman = {1: "i", 2: "ii", 3: "iii"} %}
+    <div class="subheader-item flow-section-header">
+        <div class="subheader-number"><b>A.</b></div>
+        <div class="header-text">
+            <span class="bold-underline">
+                Operaron todas las medidas de seguridad.
+            </span>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Los movimientos se autorizaron a través de todas las medidas de seguridad, las cuales son 
+            verificables a través de plataformas externas.
+            <table class="enumeration-table margin-top">
+                {% for p in security_measure_paragraphs %}
+                    <tr>
+                        <td class="enumeration-number">{{ roman[loop.index] }}.</td>
+                        <td class="enumeration-text">
+                            {{ p.title|safe }}
+                            {{ p.body|safe }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% if first_presumption %}
+        <div class="subheader-item flow-section-header">
+            <div class="subheader-number"><b>{{ "%c" % (65 + ns.sub_index) }}.</b></div>
+            <div class="header-text">
+                <span class="bold-underline">
+                    Una de las operaciones desconocidas es suficiente para configurar la 
+                    presunción del artículo 5 ter, letra {{ first_presumption }} de la Ley N° 20.009.
+                </span>
+            </div>
+            {% set ns.sub_index = ns.sub_index + 1 %}
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                El artículo 5 ter de la Ley N° 20.009 contempla diversas hipótesis en las cuales se 
+                presume la existencia de dolo o culpa grave por parte del usuario. En este sentido, 
+                si el caso bajo análisis se subsume en alguna de dichas hipótesis, ello resulta 
+                suficiente para la procedencia de la medida prejudicial conforme al artículo 5 bis 
+                del mismo cuerpo normativo. La letra {{ first_presumption }} del artículo 5 ter 
+                establece:
+                <blockquote class="quote">
+                    “Artículo 5 ter.- <b>Se presumirá el dolo o la culpa grave del usuario cuando ocurra 
+                    alguna de las siguientes hipótesis,</b> para efectos de los procedimientos ante el 
+                    juez de policía local a que se refieren los artículos 5 y 5 bis:
+                    <br><br>
+                    {{ chapter_ii_paragraphs[1].body|safe }}”
+                </blockquote>
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_ii_paragraphs[2].body|safe }}
+            </div>
+        </div>
+        {% for p in chapter_ii_paragraphs[3:] %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    {{ p.body|safe }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                En virtud de lo anterior, se configura la presunción simplemente legal de dolo o 
+                culpa grave en los términos dispuestos por el artículo 5 ter de la referida ley, 
+                lo que constituye un antecedente suficiente para que este tribunal acoja la 
+                medida prejudicial solicitada, conforme al artículo 5 bis de la Ley N° 20.009.
+            </div>
+        </div>
+    {% endif %}
+    {% if number_of_transactions > 1 %}
+        <div class="subheader-item flow-section-header">
+            <div class="subheader-number"><b>{{ "%c" % (65 + ns.sub_index) }}.</b></div>
+            <div class="header-text">
+                <span class="bold-underline">
+                    En cuanto a la cronología de las transacciones supuestamente desconocidas.
+                </span>
+            </div>
+            {% set ns.sub_index = ns.sub_index + 1 %}
+        </div>
+        {% if coopeuch_registry_uri %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    Como se puede observar en el informe COOPEUCH, las transacciones fueron realizadas 
+                    {{ chapter_ii_date_range }}:
+                    <br><br>
+                    <img
+                        src="{{ coopeuch_registry_uri }}"
+                        alt="Registro de COOPEUCH"
+                        style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+                    />
+                </div>
+            </div>
+        {% endif %}
+        {% for sentence in chapter_ii_transactions %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    {{ sentence }}
+                </div>
+            </div>
+        {% endfor %}
+        {% if chapter_ii_transactions|length > 0 and chapter_ii_transactions_conclusion|length > 0 %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    {{ chapter_ii_transactions_conclusion }}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+    {% if chapter_ii_invalid_requirements|length > 0 %}
+        <div class="subheader-item flow-section-header">
+            <div class="subheader-number"><b>{{ "%c" % (65 + ns.sub_index) }}.</b></div>
+            <div class="header-text">
+                <span class="bold-underline">
+                    El reclamo realizado por {{ "la usuaria" if claimant_partner.gender == Gender.FEMALE else "el usuario" }} 
+                    no cumple con los requisitos de la Ley N° 20.009
+                </span>
+            </div>
+            {% set ns.sub_index = ns.sub_index + 1 %}
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                El artículo 2° de la Ley N° 20.009, en su inciso primero, establece que:
+                <blockquote class="quote">
+                    “Artículo 2.- (…) los usuarios podrán limitar su responsabilidad, en los términos establecidos 
+                    por esta ley, en caso de hurto, robo, extravío o fraude, dando aviso <b><u>oportuno</u></b> al 
+                    emisor.”
+                </blockquote>
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                La Ley N° 20.009, que regula la responsabilidad de los usuarios en casos de fraude, señala que 
+                los usuarios tienen derecho a limitar su responsabilidad mediante la restitución de los fondos 
+                afectados por transacciones fraudulentas, siempre que se cumplan ciertos requisitos legales. Uno 
+                de estos requisitos es realizar un aviso oportuno y en un plazo razonable al emisor o entidad 
+                financiera sobre las pérdidas sufridas debido al fraude. Este requisito es esencial para determinar 
+                la procedencia de la solicitud de restitución, ya que permite a la institución iniciar las 
+                investigaciones necesarias y mitigar potenciales daños adicionales. Por lo tanto, el concepto de 
+                "plazo razonable" no es abstracto, sino debe ser interpretado en función de las circunstancias 
+                del caso concreto, como el momento en que el usuario se percató del fraude y las medidas que tomó 
+                para notificarlo.
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {% if user_report_uri %}
+                    {{ chapter_ii_invalid_requirements[0].body|safe }}:
+                    <br><br>
+                    <img
+                        src="{{ user_report_uri }}"
+                        alt="Relato del usuario ante Carabineros"
+                        style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+                    />
+                {% else %}
+                    {{ chapter_ii_invalid_requirements[0].body|safe }}.
+                {% endif %}
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_ii_invalid_requirements[1].body|safe }}
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                En consecuencia, y conforme a lo dispuesto por la Ley N° 20.009, la solicitud 
+                {{ "de la usuaria" if claimant_partner.gender == Gender.FEMALE else "del usuario" }} 
+                para limitar su responsabilidad en las operaciones reclamadas resulta completamente 
+                improcedente y debe desestimarse de plano.
+            </div>
+        </div>
+    {% endif %}
+    {% if chapter_ii_severe_fault|length > 0 %}
+        <div class="subheader-item flow-section-header">
+            <div class="subheader-number"><b>{{ "%c" % (65 + ns.sub_index) }}.</b></div>
+            <div class="header-text">
+                <span class="bold-underline">
+                    En cuanto a la culpa grave y a la carga de mitigar los daños del usuario.
+                </span>
+            </div>
+            {% set ns.sub_index = ns.sub_index + 1 %}
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                Para el improbable caso de que S.S considere que tales hechos no cumplen con el estándar 
+                necesario para establecer el dolo de la contraparte, es menester referirse a ciertos 
+                hechos que permiten dar cuenta de que 
+                {{ "la usuaria" if claimant_partner.gender == Gender.FEMALE else "el usuario" }} ha 
+                actuado, al menos, con culpa grave.
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_ii_severe_fault[0].body|safe }}
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_ii_severe_fault[1].body|safe }}
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                La falta de atención o supervisión sobre su cuenta bancaria puede ser calificada como 
+                culpa grave, dada la importancia de mantener control sobre sus finanzas. Tanto desde 
+                la perspectiva de la negligencia grave como desde la posible intencionalidad, este 
+                comportamiento refuerza la improcedencia de su reclamo, poniendo en duda la 
+                legitimidad de su desconocimiento de la transacción.
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_ii_severe_fault[2].body|safe }}
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                En este sentido, cabe referirse a parte de la doctrina que ha desarrollado, a partir 
+                de las normas que rigen el Derecho Civil en nuestro país, el principio que impone al 
+                acreedor (en este caso, {{ "la usuaria" if claimant_partner.gender == Gender.FEMALE else "el usuario" }}) 
+                la obligación de aminorar o impedir la generación de perjuicios. No basta con una 
+                actitud pasiva o conformista frente a la configuración de los daños si el acreedor 
+                tiene la posibilidad de atenuar su impacto, conforme a una lógica causal que exija 
+                diligencia razonable para evitar o mitigar el perjuicio.<span class="footnote">
+                    Pizarro Wilson, C. (2013). “<i>Contra el fatalismo del perjuicio: A propósito del 
+                    deber de mitigar el daño</i>”. Revista de derecho (Valparaíso), (41), pp. 69-82.
+                </span>
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                En atención a los antecedentes aportados, se concluye que la contraparte ha incumplido 
+                su deber de mitigar los daños o pérdidas ocasionados, actuando con culpa grave. Esto, 
+                en razón de su dilación injustificada en adoptar de manera inmediata las medidas de 
+                seguridad pertinentes tras haber sufrido un supuesto extravío. Dicha inacción permitió 
+                directamente la realización de las transacciones reclamadas, las cuales constituyen en 
+                su totalidad el perjuicio sufrido.
+            </div>
+        </div>
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                Por lo tanto, <b>el actuar de la contraparte contribuyó directamente a la producción del 
+                daño reclamado</b>, infringiendo así su carga de mitigar los daños provocados, limitando 
+                cualquier responsabilidad que pueda atribuirse a COOPEUCH, pues como se puede observar a 
+                partir del análisis, los terceros solo han podido acceder a la información del banco 
+                {{ "de la usuaria" if claimant_partner.gender == Gender.FEMALE else "del usuario" }} y 
+                cometer los diversos fraudes con la facilidad de la contraparte, quien ha demostrado ser 
+                completamente negligente en cuanto al manejo de sus tarjetas bancarias.
+            </div>
+        </div>
+    {% endif %}
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            A continuación, se repasará de manera detallada cada una de las razones y evidencias 
+            que demuestran fehacientemente que el presente es un caso de autofraude, es decir, un 
+            falso fraude creado, solamente en apariencia, por la contraparte, o bien, 
+            <u>en subsidio</u>, un fraude que la contraparte facilitó mediante su culpa grave. 
+            Los movimientos desconocidos por la contraparte fueron realizados por su propio dolo 
+            o, <u>en subsidio</u>, por su culpa grave.
+        </div>
+    </div>
+
+    <div class="header-item flow-section-header">
+        <div class="header-number"><b>III.</b></div>
+        <div class="header-text">
+            <h2 class="hidden">
+                III. SOBRE LAS MEDIDAS DE SEGURIDAD QUE OPERARON: EL SISTEMA DE COOPEUCH 
+                ES DE AUTENTIFICACIÓN REFORZADA.
+            </h2>
+            <span class="bold-underline">
+                SOBRE LAS MEDIDAS DE SEGURIDAD QUE OPERARON: EL SISTEMA DE COOPEUCH ES DE 
+                AUTENTIFICACIÓN REFORZADA.
+            </span>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            En primer lugar, debemos referirnos con detalle a las medidas de seguridad que operaron 
+            en los movimientos desconocidos por la contraparte. Sobre el asunto, la nueva Ley N° 
+            20.009 establece lo siguiente en su artículo 4, incisos 9° y 10°:
+            <blockquote class="quote">
+                “La Comisión para el Mercado Financiero, mediante norma de carácter general, 
+                establecerá estándares mínimos de seguridad, registro y autenticación. A través de 
+                la referida norma de carácter general, la Comisión determinará los supuestos de uso 
+                y transacciones en que resulte obligatorio por parte del emisor el uso de 
+                autenticación reforzada.
+                <br><br>
+                Para estos efectos, se entenderá por autenticación el procedimiento que permita al 
+                emisor comprobar la identidad del usuario o la validez de la utilización de un medio 
+                de pago, incluida la utilización de credenciales de seguridad personalizadas del 
+                usuario, y por <b><span class="bold-underline">autenticación reforzada</span>, la 
+                utilización de al menos dos factores de autenticación, sea de conocimiento, posesión 
+                o inherencia, diferentes e independientes entre sí</b>, para el acceso o utilización 
+                de los medios de pago, cuentas o sistemas similares que permitan efectuar pagos o 
+                transacciones electrónicas.”
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            {{ chapter_iii_paragraphs[0].body|safe }}
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            {{ chapter_iii_paragraphs[1].body|safe }}
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            {{ chapter_iii_paragraphs[2].body|safe }}
+        </div>
+    </div>
+    {% if chapter_iii_paragraphs[3].body|length > 0 %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_iii_paragraphs[3].body|safe }}
+            </div>
+        </div>
+    {% endif %}
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Es responsabilidad del usuario mantener un nivel de resguardo respecto de sus factores 
+            de seguridad, como indica la jurisprudencia que se citará en el apartado sobre el 
+            derecho. Así, el usuario no debe descuidar su tarjeta, pues si bien COOPEUCH la fabrica 
+            con un chip que la hace única e irrepetible, la empresa no puede impedir que el usuario 
+            la olvide, la deje caer, la descuide, etcétera. Esos son resguardos propios del usuario. 
+            Lo mismo puede decirse del factor de conocimiento: es deber del usuario tomar las 
+            precauciones necesarias para mantener su clave secreta como lo que es: una contraseña 
+            de carácter estrictamente personal. 
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Es solamente mediante la conjunción del factor de posesión y el factor de conocimiento 
+            que es posible realizar una operación por internet con la cuenta COOPEUCH, por lo cual 
+            la sola pérdida o hurto del factor de posesión (tarjeta del usuario) no es suficiente 
+            para el perfeccionamiento de la transacción, pues todavía se requiere el ingreso 
+            correcto de claves de seguridad{{ chapter_iii_paragraphs[4].body|safe }}.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            El inciso 8° del artículo 4 de la nueva Ley de Fraudes establece que el solo registro de 
+            los movimientos no es suficiente para acreditar el dolo o la culpa grave del usuario, 
+            como se lee a continuación:
+            <blockquote class="quote">
+                “El solo registro de las operaciones no bastará, necesariamente, para demostrar que 
+                esta fue autorizada por el usuario, ni que el usuario actuó con culpa o descuido que 
+                le sean imputables, sin perjuicio de la acción contra el autor del delito.”
+            </blockquote>
+        </div>
+    </div>
+    {% if security_systems|length > 0 %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                Es por ello que, en este caso, no solamente se cuenta con la cartola que muestra los 
+                movimientos del usuario, sino que se verificó con 
+                {{ chapter_iii_paragraphs[5].body|safe }} que los factores de seguridad, 
+                tanto de posesión como de conocimiento, hayan operado de manera correcta.
+            </div>
+        </div>
+    {% endif %}
+    {% if chapter_iii_paragraphs[6].body|length > 0 %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_iii_paragraphs[6].body|safe }}
+            </div>
+        </div>
+    {% endif %}
+    {% if chapter_iii_paragraphs[7].body|length > 0 %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_iii_paragraphs[7].body|safe }}
+            </div>
+        </div>
+    {% endif %}
+    {% if safesigner_report_uri %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                A continuación, se extracta referido documento, el cual forma parte del informe 
+                de evento de fraudes de COOPEUCH y se acompaña íntegramente en un otrosí:
+                <br><br>
+                <img
+                    src="{{ safesigner_report_uri }}"
+                    alt="Extracto informe Safesigner"
+                    style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+                />
+            </div>
+        </div>
+        {% if chapter_iii_paragraphs[8].body|length > 0 %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    {{ chapter_iii_paragraphs[8].body|safe }}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+    {% if mastercard_connect_report_uri %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                En cuanto al correcto ingreso de los datos contenidos en la tarjeta de usuario, 
+                (factor de posesión), este puede verificarse a través de la plataforma externa 
+                Mastercard Connect, la cual se extracta a continuación. Obsérvese que las 
+                transacciones objetadas son aprobadas mediante la glosa “APPROVE”:
+                <br><br>
+                <img
+                    src="{{ mastercard_connect_report_uri }}"
+                    alt="Extracto informe Mastercard Connect"
+                    style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+                />
+            </div>
+        </div>
+    {% elif celmedia_report_uri %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                En cuanto al correcto ingreso del código enviado al teléfono de la contraria, 
+                necesario para autorizar la transacción desconocida (factor de posesión), este 
+                puede verificarse a través de la plataforma externa CELMEDIA, la cual se extracta 
+                a continuación. Obsérvese que las transacciones objetadas son aprobadas mediante 
+                la glosa “TRANSACCION EXITOSA”:
+                <br><br>
+                <img
+                    src="{{ celmedia_report_uri }}"
+                    alt="Extracto informe CELMEDIA"
+                    style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+                />
+            </div>
+        </div>
+    {% endif %}
+    {% if mastercard_connect_report_uri and celmedia_report_uri and chapter_iii_paragraphs[9].body|length > 0 %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_iii_paragraphs[9].body|safe }}
+                <br><br>
+                <img
+                    src="{{ celmedia_report_uri }}"
+                    alt="Extracto informe CELMEDIA"
+                    style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+                />
+            </div>
+        </div>
+    {% endif %}
+    {% if chapter_iii_paragraphs[10].body|length > 0 %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                {{ chapter_iii_paragraphs[10].body|safe }}
+            </div>
+        </div>
+    {% endif %}
+    {% if coopeuch_registry_uri %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                El registro de COOPEUCH, para efectos del cotejo, es el que se extrae a continuación y 
+                se contiene en el informe de evento de fraude acompañado en un otrosí:
+                <br><br>
+                <img
+                    src="{{ coopeuch_registry_uri }}"
+                    alt="Registro de COOPEUCH"
+                    style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+                />
+            </div>
+        </div>
+    {% endif %}
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Exhibido lo anterior, este tribunal puede arribar con seguridad a la conclusión de que 
+            la operación cuestionada por la contraria fue debidamente autorizada por ella, y que el 
+            presente es un caso de fraude simulado o autofraude, realizado con dolo o, en subsidio, 
+            culpa grave del propio usuario.
+        </div>
+    </div>
+
+    <div class="header-item flow-section-header">
+        <div class="header-number"><b>IV.</b></div>
+        <div class="header-text">
+            <h2 class="hidden">
+                IV. LA SOLICITUD DE SUSPENSIÓN DEL ARTÍCULO 5 BIS DE LA LEY 20.009
+            </h2>
+            <span class="bold-underline">
+                LA SOLICITUD DE SUSPENSIÓN DEL ARTÍCULO 5 BIS DE LA LEY 20.009
+            </span>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            La Ley 20.009 establece un procedimiento a seguir para el caso en que un usuario de 
+            tarjetas de pago desconozca una o varias transacciones.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            En lo relevante, la Ley 20.009 establece, en su artículo 5 bis un procedimiento para 
+            solicitar judicialmente la suspensión del pago del monto reclamado por el usuario, sin 
+            importar el monto objetado:
+            <blockquote class="quote">
+                “Artículo 5 bis.- <b>Sin perjuicio de lo establecido en el artículo anterior, si 
+                hubiere antecedentes suficientes de la existencia de dolo o culpa grave por parte del 
+                usuario, el emisor podrá suspender la cancelación de cargos y/o la restitución de los 
+                fondos, cualquiera sea el monto reclamado.</b> La suspensión será informada al usuario 
+                en el mismo plazo previsto en el mencionado artículo, dando cuenta de los fundamentos 
+                que la justifican.
+                <br><br>
+                <b>El emisor deberá solicitar al juez de policía local competente, dentro de los tres 
+                días hábiles siguientes al vencimiento del plazo previsto en el inciso segundo del 
+                artículo anterior, una autorización para mantener la suspensión de la cancelación de 
+                cargos y/o restitución de fondos, <span class="bold-underline">la que será otorgada 
+                por el juez de policía local</span> respectivo cuando el emisor acompañe comprobantes 
+                que constituyan una presunción grave de que hubo dolo o culpa grave por parte del 
+                usuario, <span class="bold-underline">o concurra alguna de las circunstancias previstas 
+                en el artículo 5 ter</span></b>. Esta solicitud se tramitará de acuerdo con los 
+                artículos 273 y siguientes del Código de Procedimiento Civil, dentro de un plazo de 
+                diez días hábiles.”
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Como se desprende de la simple lectura del artículo 5 bis de la Ley de Fraudes, el emisor 
+            puede solicitar al Juzgado de Policía Local competente <b>la suspensión de la cancelación 
+            de cargos y/o la restitución de los fondos, cualquiera sea el monto reclamado,</b> de 
+            acuerdo al inciso primero.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Esta autorización será otorgada en dos supuestos (norma imperativa, no facultativa) por 
+            el referido tribunal:
+            <table class="enumeration-table margin-top">
+                <tr>
+                    <td class="enumeration-number">i.</td>
+                    <td class="enumeration-text">
+                        cuando el emisor acompañe comprobantes que constituyan una presunción grave 
+                        de que hubo dolo o culpa grave por parte del usuario; o (locución alternativa, 
+                        no copulativa),
+                    </td>
+                </tr>
+                <tr>
+                    <td class="enumeration-number">ii.</td>
+                    <td class="enumeration-text">
+                        cuando concurra alguna de las presunciones legales del artículo 5 ter del 
+                        mismo cuerpo legal. En este caso concurren ambas.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            En nuestro caso, necesariamente se debe acoger la presente medida prejudicial, toda vez 
+            que se cumplen con los presupuestos fácticos de ambas causales.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Así las cosas, respecto al primer supuesto, esta parte ha dado cuenta de que existe 
+            evidencia y señales graves y calificadas que demuestran que el presente caso corresponde 
+            a uno en que el usuario actuó con dolo o, en subsidio, culpa grave. En consecuencia, 
+            corresponde que S.S. decrete la autorización para mantener la suspensión de la cancelación 
+            de cargos y/o restitución de fondos por el monto reclamado por la contraparte.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            En ese sentido, conforme se detalló latamente en los capítulos II y III <i>supra</i>, 
+            <b>existen antecedentes más que suficientes que constituyen comprobantes graves de la 
+            existencia de dolo, o en subsidio, culpa grave de parte del demandado.</b>
+        </div>
+    </div>
+    {% if first_presumption %}
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                <span class="bold-underline">En subsidio</span>, para el improbable caso de que S.S. 
+                no considere que tales comprobantes no cumplen con dicho estándar, de igual forma se 
+                debe acoger esta solicitud, <b>ya que estamos ante {{ chapter_iv_paragraphs[0].body|safe }} de las presunciones del 
+                artículo 5 ter, específicamente, {{ chapter_iv_paragraphs[1].body|safe }} ya que como se indicó 
+                en los capítulos II y III <i>supra</i>, en este caso {{ chapter_iv_paragraphs[2].body|safe }}:</b>
+                <blockquote class="quote">
+                    “Artículo 5 ter.- Se presumirá el dolo o la culpa grave del usuario cuando ocurra 
+                    alguna de las siguientes hipótesis, para efectos de los procedimientos ante el 
+                    juez de policía local a que se refieren los artículos 5 y 5 bis:
+                    <br><br>
+                    {{ chapter_iv_paragraphs[3].body|safe }}”
+                </blockquote>
+            </div>
+        </div>
+        {% for p in chapter_iv_paragraphs[4:] %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    {{ p.body|safe }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="header-item flow-section-header">
+        <div class="header-number"><b>V.</b></div>
+        <div class="header-text">
+            <h2 class="hidden">
+                V. SOBRE EL PLAZO PARA PRESENTAR LA SOLICITUD DE MEDIDA PREJUDICIAL.
+            </h2>
+            <span class="bold-underline">
+                SOBRE EL PLAZO PARA PRESENTAR LA SOLICITUD DE MEDIDA PREJUDICIAL.
+            </span>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            En cuanto al plazo para presentar esta solicitud, el artículo 5° establece lo siguiente:
+            <blockquote class="quote">
+                “Artículo 5.- Siempre que el monto reclamado sea igual o inferior al umbral establecido 
+                de conformidad con el inciso final de este artículo, el emisor deberá proceder a la 
+                cancelación de los cargos o a la restitución de los fondos correspondientes a las 
+                operaciones reclamadas en virtud del artículo 4, dentro de diez días hábiles contados 
+                desde la fecha del reclamo o desde que se hubiere producido el daño patrimonial. <b>Si la 
+                operación reclamada consistiere en giros en avances en efectivo o cajeros automáticos, 
+                el plazo para la cancelación de los cargos o a la restitución de los fondos será de 
+                quince días hábiles.</b>
+                <br><br>
+                Si el monto reclamado fuere superior al referido umbral, el emisor deberá proceder a 
+                la cancelación de los cargos o la restitución de los fondos, según corresponda, hasta 
+                el equivalente al monto de dicho umbral, en igual plazo que el inciso precedente. 
+                Respecto del monto superior a dicha cifra el emisor tendrá siete días adicionales para 
+                cancelarlos, restituirlos al usuario o ejercer las acciones del inciso siguiente, 
+                debiendo notificar al usuario la decisión que adopte de la manera indicada en el 
+                inciso tercero del artículo 2 de esta ley.
+                <br><br>
+                <b>Si en el plazo anterior, el emisor recopilare antecedentes que acrediten la existencia 
+                de dolo o culpa grave por parte del usuario, podrá ejercer ante el juez de policía 
+                local todas las acciones que emanan de esta ley, siendo competente aquel que 
+                corresponda a la comuna del domicilio del usuario.</b> Cuando estas acciones recaigan 
+                sobre el mismo usuario se acumularán los autos”.
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Así, el plazo corresponde a 17 días (plazo del inciso 2° del artículo 5 de la Ley 20.009) 
+            más 3 días adicionales (artículo 5 bis del mismo cuerpo legal), es decir, un término de 
+            <b>20 días hábiles.</b>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Es importante destacar que el plazo del artículo 5, inciso 2°, es de 17 días y no de 10, 
+            toda vez que el plazo de 10 días está contenido en otro inciso, el 1°, y el artículo 5 
+            bis se remite expresamente al inciso 2°, que establece el plazo de 17 días. Este plazo 
+            opera para cualquier monto, precisamente por el tenor del artículo 5 bis, que establece 
+            su procedimiento "<span class="italic">cualquiera sea el monto reclamado</span>".
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Los días deben contarse según establece el inciso final del artículo 1° de la Ley 20.009, 
+            cuyo texto reza como sigue:
+            <blockquote class="quote">
+                “Los plazos de días hábiles que establece esta ley no considerarán los sábados, 
+                domingos ni festivos u otros que no correspondan a días hábiles bancarios conforme 
+                 a lo previsto en el artículo 38 de la Ley General de Bancos”.
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Por otro lado, los plazos solo comienzan a correr desde que el usuario adjunta la 
+            declaración jurada simple considerada en el artículo 4, inciso 3°, de la Ley N° 20.009, 
+            ya que solamente desde ese momento el reclamo se hace efectivo:
+            <blockquote class="quote">
+                “Para hacer efectiva la reclamación, el emisor podrá exigir al usuario la suscripción 
+                de una declaración jurada simple que indique el monto reclamado, la fecha de la 
+                operación, así como el producto y el medio a través del cual se realizó el fraude. 
+                El emisor deberá habilitar canales físicos y/o digitales para la suscripción de 
+                la mencionada declaración jurada.”
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            <b>En este caso,</b> y como quedó claro en la exposición de los hechos contenida en el 
+            capítulo primero de esta presentación, el reclamo se hizo efectivo con fecha 
+            {{ complaint_date }}, estando la presente solicitud dentro de plazo legal.
+        </div>
+    </div>
+
+    <div class="header-item flow-section-header">
+        <div class="header-number"><b>VI.</b></div>
+        <div class="header-text">
+            <h2 class="hidden">
+                VI. JURISPRUDENCIA DE LOS TRIBUNALES SUPERIORES DE JUSTICIA SOBRE LA MATERIA: 
+                LOS DEBERES DE RESGUARDO DEL USUARIO.
+            </h2>
+            <span class="bold-underline">
+                JURISPRUDENCIA DE LOS TRIBUNALES SUPERIORES DE JUSTICIA SOBRE LA MATERIA: 
+                LOS DEBERES DE RESGUARDO DEL USUARIO.
+            </span>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Tal y como se ha expuesto en el capítulo fáctico, la contraparte ha incurrido en dolo o 
+            culpa grave, facilitando la comisión del supuesto fraude por ella reclamado, al <b>fallar 
+            con sus deberes de resguardo</b> sobre su tarjeta y clave secreta de seguridad. La 
+            jurisprudencia sobre la materia es clara al establecer que es deber del usuario mantener 
+            resguardadas tanto su factor de posesión como su clave de seguridad.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            {{ chapter_vi_paragraphs[0].body|safe }}
+            <blockquote class="quote">
+                “De esta forma, conforme la manera en que se concretó el fraude referido, es posible 
+                concluir que el ardid utilizado, y la actividad poco cuidadosa del demandante, 
+                sobrepasó la esfera de cuidado que debió otorgar el banco, pues como se refirió, es 
+                el propio actor quien reconoce haber caído en el “phishing” realizado, y aunque 
+                intenta eludir su responsabilidad, señalando que sólo habría digitado su clave de 
+                acceso de cuatro números, más no la clave de seguridad o digipass; sin embargo, del 
+                mérito del informe de la demandada de 1 de abril de 2019, acompañado a fojas 9, 
+                aparece que consultado “Servipag”, en cuya plataforma se realizaron los pagos 
+                cuestionados, éste señaló que para ello, se realizaron tres transacciones, que 
+                abarcan las distintas operaciones, donde el Banco de Chile, sólo actuó como medio 
+                de pago, <b>por lo que era necesario contar, no sólo con la clave secreta de seguridad, 
+                sino también con la clave digipass, con la que los terceros que realizarn (sic) el 
+                fraude, debieron haber contado, no verificándose alguna brecha de seguridad, por lo 
+                que la responsabilidad del cuidado de dichos datos, recaía en el cliente</b>”.<span class="footnote">
+                    Sentencia rol N° 783-2020-Policía Local, pronunciada por la Iltma. Corte de 
+                    Apelaciones de Santiago con fecha 22 de noviembre de 2022.
+                </span><span class="straigth"> (Énfasis añadido).</span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            {{ chapter_vi_paragraphs[1].body|safe }}
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Ilustradora resulta, también, la reciente sentencia de la Iltma. Corte de Apelaciones 
+            de Antofagasta, que señala que <b>habiéndose utilizado correctamente las claves 
+            correspondientes, se excluye la responsabilidad del emisor, especialmente si el 
+            usuario demandado no ha sido capaz de probar circunstancia alguna que permita 
+            demostrar que no fue él quien autorizó las transacciones mediante el ingreso de 
+            las claves.</b>
+            <blockquote class="quote">
+                “QUINTO: Que el inciso 3° del artículo 5 de la Ley 21.234 permite la exoneración 
+                de responsabilidad del emisor de las tarjetas cuando el titular de ellas haya 
+                actuado con culpa grave o dolo, y conforme a los hechos establecidos en la 
+                presente causa, si bien no es posible concluir que haya mediado dolo previo, 
+                sin duda la demandada ha incurrido en grave negligencia, es decir, en la falta 
+                del cuidado debido, que consiste aquí en no observar las advertencias que de 
+                manera masiva se efectúan para no entregar datos personales ni claves.
+                <br><br>
+                En el caso de autos, el robo con intimidación que invoca el demandado, como 
+                causa de los pagos efectuados con su tarjeta de crédito no se encuentra 
+                justificado, ya que fue denunciado a los seis días de haber ocurrido 
+                presuntamente, sin dar explicaciones que permitan presumir su ocurrencia, pues 
+                las declaraciones de la hija del demandado y su conviviente, no revisten la 
+                suficiencia necesaria para su acreditación, pues no son testigos presenciales, 
+                y solo pueden dar fe que el demandado llegó a su casa el 27 de abril de 2023 
+                alrededor de las 4:00 horas, manifestando que fue asaltado.
+                <br><br>
+                <b>De esta manera, no se explica de otro modo que no sea la propia torpeza y 
+                descuido de la demandada, lo que justifique que se le hayan efectuado los 
+                cargos a su tarjeta de crédito sin advertirlos, o que haya sido ella misma 
+                quien efectuó las compras, u otra persona utilizando las claves que estaban 
+                bajo la responsabilidad del usuario, pero cualquiera que sea el caso, se 
+                excluye la responsabilidad del emisor</b>”.<span class="footnote">
+                    Sentencia rol N° 213-2023-Policía Local, pronunciada con fecha 15 de febrero de 
+                    2024 por la Iltma. Corte de Apelaciones de Antofagasta.
+                </span><span class="straigth"> (Énfasis añadido).</span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            {{ chapter_vi_paragraphs[2].body|safe }}
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Todo lo anterior se ve nuevamente confirmado por una tercera sentencia de 
+            apelaciones, en la cual se resolvió que las operaciones realizadas con tarjeta y 
+            clave verdadera, ya sea por la contraparte o un tercero, no son de responsabilidad 
+            de la institución financiera, pues es responsabilidad del usuario el cuidado y 
+            responsabilidad sobre sus factores de seguridad:
+            <blockquote class="quote">
+                “SEPTIMO (sic): Que, estos elementos de prueba son apreciados conforme a las 
+                reglas de la sana crítica, al tenor de lo dispuesto en el artículo 14 de la 
+                Ley N°18.287, de tal manera que sin contravenir las reglas de la lógica, 
+                máximas de la experiencia y los conocimientos científicos, permiten tener por 
+                acreditado los hechos fundantes de la demanda del Banco Santander, especialmente 
+                en el sentido de que las transacciones bancarias objetadas por la demandada, 
+                se realizaron con la tarjeta de crédito válida de la misma, <b>la que cuenta con 
+                <span class="bold-underline">dispositivo chip</span>, lo que hace que cada 
+                operación sea única e irrepetible, descartando que sea posible clonarla o 
+                falsificarla</b>, además de que se ingresaron correctamente los datos auténticos 
+                de la clave secreta de la usuaria (...)
+                <br><br>
+                OCTAVO: Que, de esta manera se puede concluir que <b>las operaciones impugnadas 
+                fueron efectuadas de manera directa y presencial con la tarjeta y clave 
+                verdadera, ya sea por la usuaria o un tercero, las que son de conocimiento, 
+                cuidado y responsabilidad de la clienta o demandada, constituyendo de esta 
+                forma un actuar con culpa o negligencia grave en las operaciones bancarias que 
+                es de su obligación, conforme lo dispuesto en el artículo 44 del Código Civil, 
+                transgrediendo la esfera de resguardo que debe tener respecto de las mismas,</b> con 
+                el objeto de ser víctima de fraudes o engaños de este tipo, habiendo la usuaria 
+                <b>descuidado gravemente las claves de resguardo que es de su deber custodiarla,</b> de 
+                tal manera que amerita al banco emisor a presentar las acciones pertinentes al 
+                tenor de lo dispuesto en el artículo 5 de la Ley N°20.009 modificada por la N° 
+                21.234, acogiendo la demanda presentada en autos por el emisor Banco Santander 
+                en contra de la clienta Paola Alejandra Canario Lagos”.<span class="footnote">
+                    Sentencia rol N° 213-2023-Policía Local, pronunciada con fecha 15 de febrero 
+                    de 2024 por la Iltma. Corte de apelaciones de Antofagasta. 
+                </span><span class="straigth"> (Énfasis añadido).</span>
+            </blockquote>
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Debe tenerse presente que COOPEUCH ha cumplido con las medidas de diligencia que le son 
+            aplicables para un caso como este. Los sistemas de COOPEUCH no han sufrido ninguna 
+            vulneración y la institución funciona con un robusto sistema de autorización de 
+            transacciones, el cual requiere de factores de conocimiento (algo que el usuario sabe: 
+            clave internet) y factor de posesión (algo que el usuario tiene: tarjeta). Por último, 
+            COOPEUCH ha cumplido con las medidas publicitarias para evitar riesgos de fraude:
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Además de las prevenciones protocolares realizadas por los/as funcionarios/as de la 
+            empresa, existen videos publicados en internet acerca de esta temática, como los 
+            siguientes extractos informativos, de fecha 10 de abril de 2019 y 27 de mayo de 
+            2021, respectivamente:
+            <br><br>
+            <img
+                src="https://gpt-strategist.s3.us-east-1.amazonaws.com/static/images/coopeuch-video-screenshot-1.png"
+                alt="Extracto informativo COOPEUCH"
+                style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+            />
+            <br><br>
+            <img
+                src="https://gpt-strategist.s3.us-east-1.amazonaws.com/static/images/coopeuch-video-screenshot-2.png"
+                alt="Extracto informativo COOPEUCH"
+                style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+            />
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Asimismo, de forma permanente se informan en la página web una serie de buenas prácticas 
+            que son recomendadas en términos imperativos a los/as tarjetahabientes. Entre ellas, es 
+            posible leer instructivos como <span class="italic">“Nunca compartas la clave secreta”</span> 
+            y <span class="italic">“No prestes tu tarjeta, ni permitas que otras personas la usen en tu nombre”</span>, 
+            como se aprecia en los siguientes extractos:
+            <br><br>
+            <img
+                src="https://gpt-strategist.s3.us-east-1.amazonaws.com/static/images/coopeuch-suggestions-1.png"
+                alt="Recomendaciones COOPEUCH"
+                style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+            />
+            <br><br>
+            <img
+                src="https://gpt-strategist.s3.us-east-1.amazonaws.com/static/images/coopeuch-suggestions-2.png"
+                alt="Recomendaciones COOPEUCH"
+                style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+            />
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            A mayor abundamiento, COOPEUCH cuenta, también permanentemente, con canales de 
+            información para evitar el riesgo de fraudes, incluyendo informativos escritos y 
+            audiovisuales (los cuales son publicados abiertamente en la plataforma YouTube), a través 
+            de su iniciativa "COOPEUCH EDUCA", como puede observarse de la siguiente captura de pantalla:
+            <br><br>
+            <img
+                src="https://gpt-strategist.s3.us-east-1.amazonaws.com/static/images/coopeuch-educa-screenshot.png"
+                alt="Captura de COOPEUCH EDUCA en YouTube"
+                style="max-width:13.00cm; height:auto; border:1px solid #ccc; padding:4px;"
+            />
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Ha quedado absolutamente establecido a estas alturas S.S., que COOPEUCH informa de manera 
+            oportuna y veraz consejos y buenas prácticas que deben ser puestos en marcha por los/s 
+            tarjetahabientes.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Corresponde, entonces, que el tribunal declare que la contraparte ha actuado con dolo 
+            (en subsidio, culpa grave) en los hechos descritos en el capítulo fáctico de la presente 
+            solicitud. 
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Respecto de la contraparte y de eventuales participantes de los hechos hasta aquí 
+            descritos, nuestra representada se reserva todos los derechos correspondientes a 
+            potenciales futuras acciones judiciales, en especial aquellas referidas a la 
+            indemnización de los daños provocados.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            Finalmente S.S., conforme lo dispone el artículo 287 del Código de Procedimiento Civil, 
+            esta parte deducirá la demanda especial contenida en el artículo 5 de la Ley N° 20.009, 
+            cuyos fundamentos son idénticos a los de esta solicitud de medida precautoria.
+        </div>
+    </div>
+    <div class="flow-enumeration-item">
+        <div class="flow-enumeration-text">
+            {{ chapter_vi_paragraphs[3].body|safe }}
+        </div>
+    </div>
+
+    <p class="content">
+        <b>POR TANTO,</b>
+    </p>
+    <p class="content">
+        <b>SÍRVASE S.S.,</b> tener por interpuesta la presente solicitud de medida prejudicial precautoria, 
+        acogerla y, en definitiva, declarar que COOPEUCH está autorizada para mantener la suspensión de la 
+        cancelación de cargos y/o restitución de fondos hasta el monto de {{ total_transaction_amount }}, 
+        correspondiente a la suma reclamada por la contraparte; con costas.
+    </p>
+    <p class="content">
+        <span class="bold-underline">PRIMER OTROSÍ:</span> Que de conformidad con lo dispuesto por el artículo 
+        289 del CPC, en relación con el inciso 4 del artículo 5 bis de la Ley N° 20.009, venimos en solicitar 
+        a S.S. se sirva ordenar que la medida prejudicial sea decretada <b>sin previa audiencia del futuro demandado</b> 
+        y que la resolución por la cual se acoge dicha medida sea notificada de manera conjunta con el proveído de la 
+        demanda que se presentará.
+    </p>
+    <p class="content">
+        <b>SÍRVASE S.S.,</b> acceder a lo solicitado.
+    </p>
+    <p class="content">
+        <span class="bold-underline">SEGUNDO OTROSÍ:</span> Que, por este acto, solicitamos a S.S. se sirva 
+        designar receptor/a ad hoc con el objeto de notificar la resolución que acoja la presente medida 
+        prejudicial <span class="bold-underline">conjuntamente</span> con aquella que tenga por presentada 
+        la demanda que se deducirá y cite al comparendo de estilo, en los términos del inciso 4 del artículo 
+        5 bis de la Ley N° 20.009.
+    </p>
+    <p class="content">
+        <b>SÍRVASE S.S.,</b> acceder a lo solicitado.
+    </p>
+    <p class="content">
+        <span class="bold-underline">TERCER OTROSÍ:</span> Que, por este acto, y conforme al inciso cuarto 
+        del artículo 18 de la Ley N° 18.287, venimos en solicitar a S.S. se sirva notificar a esta parte 
+        mediante el envío de correos electrónicos a la siguiente dirección: 
+        “<a href="mailto:adiaz@colombara.cl">adiaz@colombara.cl</a>”.
+    </p>
+    <p class="content">
+        <b>SÍRVASE S.S.,</b> acceder a lo solicitado.
+    </p>
+    <p class="content">
+        <span class="bold-underline">CUARTO OTROSÍ:</span> Que, de conformidad a lo dispuesto en el artículo 
+        50 C, inciso 2°, de la Ley 19.496, venimos en solicitar a S.S. se sirva tener por acompañada copia de 
+        mandato judicial por Escritura Pública con Repertorio Nº 6683-2022, en la cual consta la personería 
+        para comparecer en estos autos, en representación de COOPEUCH.
+    </p>
+    <p class="content">
+        <b>SÍRVASE S.S.,</b> tenerla por acompañada, con citación.
+    </p>
+    <p class="content">
+        <span class="bold-underline">QUINTO OTROSÍ:</span> Que, en su calidad de abogado habilitado para el 
+        ejercicio de la profesión, en virtud del Mandato Judicial acompañado, los Sres. CIRO COLOMBARA LÓPEZ 
+        y ALDO DÍAZ CANALES vienen en asumir personalmente el patrocinio y poder en la presente causa, fijando 
+        domicilio en Alonso de Córdova N° 4.355, piso N° 14, comuna de Vitacura.
+    </p>
+    <p class="content">
+        <b>SÍRVASE S.S.,</b> tenerlo presente.
+    </p>
+    <p class="content">
+        <span class="bold-underline">SEXTO OTROSÍ:</span> Que, por este acto, venimos en acompañar, con 
+        citación, los siguientes documentos:
+    </p>
+
+    <div class="annex-enumeration">
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                Set de capturas de pantalla medidas informativas sobre seguridad bancaria emitidas por COOPEUCH.
+            </div>
+        </div>
+
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                Informe evento de fraude correspondiente al reclamo N° {{ claimant_partner.crm_complaint }}, 
+                elaborado por el Departamento de Prevención y Gestión de Fraude de COOPEUCH, con sus anexos.
+            </div>
+        </div>
+
+        <div class="flow-enumeration-item">
+            <div class="flow-enumeration-text">
+                Comunicación enviada al cliente con fecha {{ communication_date }}, 
+                mediante la cual COOPEUCH le informó sobre la suspensión de la devolución de los montos reclamados.
+            </div>
+        </div>
+
+        {% for system in security_systems %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    Informe de {{ system }} relativo a los movimientos desconocidos por la contraria, en el 
+                    cual consta la existencia de los factores de autentificación requeridos para efectos de 
+                    la configuración de la presunción establecida en el artículo 5 ter, letra h), de la Ley 
+                    N° 20.009.
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if claimant_request.cca_report_exists %}
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    Informe de CCA relativo a las transferencias enviadas por la contraria.
+                </div>
+            </div>
+            <div class="flow-enumeration-item">
+                <div class="flow-enumeration-text">
+                    Informe de CCA relativo a las transferencias recibidas por la contraria.
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <p class="content">
+        <b>SÍRVASE S.S.,</b> tenerlos por acompañados, con citación.
+    </p>
+</body>
+</html>

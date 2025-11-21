@@ -1,0 +1,12 @@
+PROCEDIMIENTO           : EJECUTIVO
+MATERIA                 : COBRO DE PAGARÉ
+DEMANDANTE              : BANCO CONSORCIO
+RUT                     : 99.500.410-0
+ABOGADO PATROCINANTE    : DIEGO JOSE BENAVENTE DÍAZ
+RUT                     : 12.404.075-2
+EJECUTADO I             : VIA UNO CHILE SpA
+RUT                     : 76.055.749-8
+REPRESENTANTE           : FELIPE FERNANDO PIZARRO CORRAL
+RUT                     : 6.647.056-3
+EJECUTADO II            : FELIPE FERNANDO PIZARRO CORRAL
+RUT                     : 6.647.056-3

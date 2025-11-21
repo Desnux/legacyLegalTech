@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "legal-strategist-web",
+      "script": "/web/server.js",
+      "cwd": "/web",
+      "exec_mode": "cluster",
+      "instances": 2
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Generic single-database configuration.
+
+Commands:
+
+- Add migration: `alembic revision --autogenerate -m "{message}"`
+- Apply the migration: `alembic upgrade head`
+- Copy versions to local (run inside docker folder): `docker cp legal-strategist-api:/app/migrations/versions ../api/migrations`

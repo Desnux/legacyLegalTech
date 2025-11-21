@@ -1,0 +1,38 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to AWS ECR..."
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+      - COMMIT_SHA=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_SHA:-latest}
+      - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+  build:
+    commands:
+      - echo "Building api..."
+      - cd api
+      - docker build --build-arg ECR_REGISTRY=$ECR_REGISTRY -t $ECR_REGISTRY/legal-strategist-api:$IMAGE_TAG .
+      - docker tag $ECR_REGISTRY/legal-strategist-api:$IMAGE_TAG $ECR_REGISTRY/legal-strategist-api:$IMAGE_TAG
+      - echo "Build api completed on `date`"
+      - echo "Building web..."
+      - cd ../web
+      - docker build --build-arg ECR_REGISTRY=$ECR_REGISTRY --build-arg NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL -t $ECR_REGISTRY/legal-strategist-web:$IMAGE_TAG .
+      - docker tag $ECR_REGISTRY/legal-strategist-web:$IMAGE_TAG $ECR_REGISTRY/legal-strategist-web:$IMAGE_TAG
+      - echo "Build web completed on `date`"
+  post_build:
+    commands:
+      - echo "Pushing docker images to AWS ECR..."
+      - docker push $ECR_REGISTRY/legal-strategist-api:$IMAGE_TAG
+      - docker push $ECR_REGISTRY/legal-strategist-web:$IMAGE_TAG
+      - echo "Updating environment variables in docker-compose.yml..."
+      - sed -i -e "s|\${IMAGE_TAG:-latest}|$IMAGE_TAG|g" $CODEBUILD_SRC_DIR/docker-compose.yml
+      - sed -i -e "s|\${ECR_REGISTRY}|$ECR_REGISTRY|g" $CODEBUILD_SRC_DIR/docker-compose.yml
+artifacts:
+  files:
+    - .ebextensions/**/*
+    - docker-compose.yml
+cache:
+  paths:
+    - api/pkg/**/*
+    - web/node_modules/**/*
