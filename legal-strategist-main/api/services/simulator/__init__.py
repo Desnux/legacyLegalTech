@@ -1,1 +1,0 @@
-from .litigant_simulator import LitigantSimulator

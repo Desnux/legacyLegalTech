@@ -1,2 +1,0 @@
-{defendant_attorney.name}, abogado, por su mandante {defendant.name}, según patrocinio y poder ya constituido en autos, ambos domiciliados para efectos de este juicio en {defendant_attorney.address + defendant.address}, en autos caratulados “{case_title}”, Rol {case_role}, a VS. respetuosamente digo:
-Habiéndose tenido por notificada mi mandante de la demanda de autos con fecha {demand_text_date (format_example: 25 de enero de 2023)}, vengo en oponer, por mi representada, excepciones a la demanda ejecutiva interpuesta en autos, al siguiente tenor:
