@@ -33,7 +33,10 @@ fi
 
 exec gunicorn main:app \
     -k uvicorn.workers.UvicornWorker \
-    --workers 4 \
-    --threads 2 \
+    --workers 1 \
+    --threads 1 \
     --timeout 180 \
+    --max-requests 100 \
+    --max-requests-jitter 20 \
     --bind 0.0.0.0:"$PORT"
+
