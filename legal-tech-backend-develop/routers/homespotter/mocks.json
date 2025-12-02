@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "76055749-8": [
+      {
+        "address": "Av. Apoquindo 1234, Las Condes",
+        "rol": "123-45",
+        "comuna": "Las Condes",
+        "comunaCode": "13114",
+        "foja": "152",
+        "number": "1234",
+        "year": "2019"
+      },
+      {
+        "address": "El Golf 100, Las Condes",
+        "rol": "200-33",
+        "comuna": "Las Condes",
+        "comunaCode": "13114",
+        "foja": "450",
+        "number": "2001",
+        "year": "2017"
+      },
+      {
+        "address": "Isidora Goyenechea 3000, Las Condes",
+        "rol": "201-99",
+        "comuna": "Las Condes",
+        "comunaCode": "13114",
+        "foja": "600",
+        "number": "2200",
+        "year": "2020"
+      }
+    ],
+    "6647056-3": [
+      {
+        "address": "Providencia 5678, Providencia",
+        "rol": "567-89",
+        "comuna": "Providencia",
+        "comunaCode": "13115",
+        "foja": "321",
+        "number": "5678",
+        "year": "2021"
+      },
+      {
+        "address": "Marcoleta 450, Santiago",
+        "rol": "600-12",
+        "comuna": "Santiago",
+        "comunaCode": "13101",
+        "foja": "120",
+        "number": "600",
+        "year": "2018"
+      },
+      {
+        "address": "Santa Isabel 999, Santiago",
+        "rol": "601-88",
+        "comuna": "Santiago",
+        "comunaCode": "13101",
+        "foja": "130",
+        "number": "601",
+        "year": "2016"
+      }
+    ]
+  },
+  "vehicles": {
+    "76055749-8": [
+      {
+        "patente": "ABCD12",
+        "brand": "Toyota",
+        "model": "Corolla",
+        "year": 2018,
+        "fiscalValue": 8500000
+      },
+      {
+        "patente": "MNOP34",
+        "brand": "Ford",
+        "model": "Ranger",
+        "year": 2019,
+        "fiscalValue": 15000000
+      },
+      {
+        "patente": "QRST56",
+        "brand": "Kia",
+        "model": "Rio",
+        "year": 2015,
+        "fiscalValue": 6500000
+      }
+    ],
+    "6647056-3": [
+      {
+        "patente": "EFGH34",
+        "brand": "Hyundai",
+        "model": "Tucson",
+        "year": 2020,
+        "fiscalValue": 12000000
+      },
+      {
+        "patente": "UVWX78",
+        "brand": "Chevrolet",
+        "model": "Sail",
+        "year": 2017,
+        "fiscalValue": 5500000
+      },
+      {
+        "patente": "YZAB90",
+        "brand": "Honda",
+        "model": "Civic",
+        "year": 2016,
+        "fiscalValue": 9000000
+      }
+    ]
+  },
+  "societies": {
+    "76055749-8": [
+      {
+        "societyName": "Inversiones Ficticias SpA",
+        "rut": "76055749-8",
+        "participation": 0.5
+      },
+      {
+        "societyName": "Comercial Demo S.A.",
+        "rut": "76055749-8",
+        "participation": 0.2
+      },
+      {
+        "societyName": "Servicios ABC Ltda.",
+        "rut": "76055749-8",
+        "participation": 0.1
+      }
+    ],
+    "6647056-3": [
+      {
+        "societyName": "Servicios Demo Ltda.",
+        "rut": "6647056-3",
+        "participation": 0.25
+      },
+      {
+        "societyName": "Transportes XYZ SpA",
+        "rut": "6647056-3",
+        "participation": 0.4
+      },
+      {
+        "societyName": "Tecno Innovación S.A.",
+        "rut": "6647056-3",
+        "participation": 0.15
+      }
+    ]
+  }
+} 
