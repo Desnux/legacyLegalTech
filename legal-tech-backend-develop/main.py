@@ -63,11 +63,18 @@ app = FastAPI(
 
 origins = [
     "http://gpt-strategist.us-east-1.elasticbeanstalk.com:3002",
+
+    # Frontend producción / previews (Vercel)
     "https://legaltech-front.vercel.app",
     "https://legaltech-front-dev.vercel.app",
     "https://legal-tech-frontend-phi.vercel.app",
     "https://legal-tech-frontend-5apn9ea7m-neural-team.vercel.app",
     "https://legal-tech-frontend-git-change-create-demand-neural-team.vercel.app",
+
+    # ⬇️ AGREGA ESTA (URL REAL DE RENDER)
+    "https://legacylegaltech.onrender.com",
+
+    # Local
     "http://localhost:3001",
     "http://localhost:3002",
     "http://localhost:3000",
@@ -77,6 +84,7 @@ origins = [
     "http://host.docker.internal:3000",
     "http://host.docker.internal:3002"
 ]
+
 
 app.add_middleware(
     CORSMiddleware,
