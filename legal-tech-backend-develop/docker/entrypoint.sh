@@ -2,13 +2,24 @@
 
 set -e
 
-echo "$DB_HOST:$DB_PORT"
+# Si no viene PORT (por ejemplo, corriendo local), usa 8100 por defecto
+PORT=${PORT:-8100}
 
-until pg_isready -h "$DB_HOST" -p "$DB_PORT"; do
-  echo "Waiting for PostgreSQL..."
-  sleep 5
-done
+echo "App port: $PORT"
+echo "DB: ${DB_HOST:-<no DB_HOST>}:${DB_PORT:-<no DB_PORT>}"
 
+# Si hay DB_HOST y DB_PORT, espera a que PostgreSQL esté listo
+if [[ -n "$DB_HOST" && -n "$DB_PORT" ]]; then
+  echo "Waiting for PostgreSQL at $DB_HOST:$DB_PORT..."
+  until pg_isready -h "$DB_HOST" -p "$DB_PORT"; do
+    echo "Waiting for PostgreSQL..."
+    sleep 5
+  done
+else
+  echo "DB_HOST o DB_PORT no definidos, saltando espera de PostgreSQL."
+fi
+
+# Migraciones opcionales
 if [[ "${MIGRATION_ENABLED}" == "true" ]]; then
   echo "Running migrations"
   alembic upgrade head
@@ -25,4 +36,4 @@ exec gunicorn main:app \
     --workers 4 \
     --threads 2 \
     --timeout 180 \
-    --bind 0.0.0.0:8100
+    --bind 0.0.0.0:"$PORT"
