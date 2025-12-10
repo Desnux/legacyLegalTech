@@ -2,6 +2,7 @@ import jwt
 from datetime import datetime, timedelta
 from typing import Optional
 from uuid import UUID
+import uuid
 from sqlmodel import select
 
 from config import Config
@@ -70,15 +71,27 @@ class UserAuthService:
     
     @classmethod
     def create_access_token(cls, data: dict, expires_delta: Optional[timedelta] = None) -> str:
-        """Create a JWT access token."""
         to_encode = data.copy()
-        if expires_delta:
-            expire = datetime.utcnow() + expires_delta
-        else:
-            expire = datetime.utcnow() + timedelta(minutes=cls.ACCESS_TOKEN_EXPIRE_MINUTES)
         
-        to_encode.update({"exp": expire})
-        encoded_jwt = jwt.encode(to_encode, cls.SECRET_KEY, algorithm=cls.ALGORITHM)
+        now = datetime.utcnow()
+        
+        if expires_delta:
+            expire = now + expires_delta
+        else:
+            expire = now + timedelta(minutes=cls.ACCESS_TOKEN_EXPIRE_MINUTES)
+        
+        to_encode.update({
+            "exp": expire,
+            "iat": now,                    # ⬅ issued at
+            "jti": str(uuid.uuid4()),      # ⬅ identificador único
+        })
+        
+        encoded_jwt = jwt.encode(
+            to_encode,
+            cls.SECRET_KEY,
+            algorithm=cls.ALGORITHM
+        )
+        
         return encoded_jwt
     
     @classmethod
