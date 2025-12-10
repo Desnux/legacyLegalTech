@@ -26,6 +26,7 @@ from storage import S3Storage, TextractWrapper
 _pypdfium2_lock = threading.Lock()
 
 
+
 class DevNullWrapper:
     """Wrapper que simula un archivo siempre abierto para evitar errores de rich"""
     def __init__(self):
@@ -79,6 +80,48 @@ class DevNullWrapper:
             pass
 
 
+def is_text_usable(text: str) -> bool:
+    """
+    Determina si el texto extraído es suficiente para evitar OCR.
+    """
+    if not text:
+        return False
+
+    text = text.strip()
+    if len(text) < 500:
+        return False
+
+    letters = sum(c.isalpha() for c in text)
+    ratio = letters / max(len(text), 1)
+
+    return ratio > 0.6
+
+
+def calculate_textract_confidence(blocks: list[dict]) -> float:
+    """
+    Calcula la confianza promedio de Textract basada en bloques LINE.
+    """
+    confidences = [
+        block.get("Confidence", 0.0)
+        for block in blocks
+        if block.get("BlockType") == "LINE"
+    ]
+
+    if not confidences:
+        return 0.0
+
+    return round(sum(confidences) / len(confidences), 2)
+
+
+def mask_low_confidence_text(text: str, confidence: float, threshold: float = 85.0) -> str:
+    """
+    Si la confianza es menor al umbral, reemplaza el contenido por 'XXXXXX'.
+    """
+    if confidence < threshold:
+        return "XXXXXX"
+    return text
+
+
 class PdfLoader(BaseLoader):
     """Transforms PDF files into langchain Documents."""
     def __init__(self, file_path: str) -> None:
@@ -90,19 +133,33 @@ class PdfLoader(BaseLoader):
         return loader.lazy_load()
     
     def load(self) -> list[Document]:
-        """
-        Load PDF documents.
-        
-        Returns:
-            list[Document]: List of LangChain Document objects (one per page)
-        """
         thread_id = threading.current_thread().ident
         logging.info(f"  📄 [PdfLoader] [Thread {thread_id}] load() llamado para: {self.file_path}")
-        parse_start = time.time()
+
+        # 1️⃣ Intentar texto nativo (rápido, confiable)
+        try:
+            native_loader = PyPDFium2Loader(self.file_path, extract_images=False)
+            native_docs = list(native_loader.lazy_load())
+            native_text = "\n".join(d.page_content for d in native_docs if d.page_content)
+
+            if is_text_usable(native_text):
+                logging.info(f"  ✅ [PdfLoader] Texto nativo usable detectado. OCR omitido.")
+                for doc in native_docs:
+                    doc.metadata["extraction_method"] = "NATIVE_PDF"
+                    doc.metadata["confidence"] = 98.0
+                return native_docs
+
+            logging.info(f"  ⚠️ [PdfLoader] Texto nativo insuficiente. Se usará Textract.")
+
+        except Exception as e:
+            logging.warning(
+                f"  ⚠️ [PdfLoader] Error leyendo texto nativo, fallback a Textract: {e}"
+            )
+
+        # 2️⃣ Fallback a Textract (pipeline existente)
         documents = list(self.parse(self.file_path))
-        parse_time = time.time() - parse_start
-        logging.info(f"  📄 [PdfLoader] [Thread {thread_id}] load() completado: {len(documents)} documentos en {parse_time:.4f}s")
         return documents
+
     
     @property
     def textract_time(self) -> float:
@@ -186,13 +243,20 @@ class PdfLoader(BaseLoader):
                 
                 # Create Document for each page
                 if pages_text:
+                    confidence = calculate_textract_confidence(blocks)
+                    logging.info(f"  🔍 [Textract] Confianza promedio OCR: {confidence}%")
                     for page_number in sorted(pages_text.keys()):
                         page_text = "\n".join(pages_text[page_number])
                         if page_text.strip():  # Only yield non-empty pages
+                            safe_text = mask_low_confidence_text(page_text.strip(), confidence)
                             yield Document(
-                                page_content=page_text.strip(),
-                                metadata={"source": file_path, "page": page_number}
-                            )
+                                page_content=safe_text,
+                                metadata={
+                                    "source": file_path,
+                                    "page": page_number,
+                                    "extraction_method": "OCR_TEXTRACT",
+                                    "confidence": confidence
+                                })
                             logging.info(f"  📄 [PdfLoader] [Thread {thread_id}] Página {page_number + 1} procesada: {len(page_text)} caracteres")
                     logging.info(f"  📄 [PdfLoader] [Thread {thread_id}] Total de páginas procesadas: {len(pages_text)}")
                 else:
