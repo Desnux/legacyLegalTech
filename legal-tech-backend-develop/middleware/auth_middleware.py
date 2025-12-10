@@ -77,7 +77,19 @@ class OptimizedAuthMiddleware(BaseHTTPMiddleware):
                 session.close()
 
     def _is_public_path(self, path: str) -> bool:
-        return any(path.startswith(p) for p in self.public_paths)
+        public_prefixes = (
+            "/docs",
+            "/redoc",
+            "/openapi.json",
+            "/v1/docs",
+            "/v1/redoc",
+            "/v1/openapi.json",
+            "/health",
+            "/favicon.ico",
+        )
+
+        return any(path.startswith(p) for p in public_prefixes)
+
 
     async def _authenticate_user(self, token: str, session: Session) -> User:
         # JWT auth
