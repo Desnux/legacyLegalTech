@@ -77,18 +77,21 @@ class OptimizedAuthMiddleware(BaseHTTPMiddleware):
                 session.close()
 
     def _is_public_path(self, path: str) -> bool:
-        public_prefixes = (
+        PUBLIC_PREFIXES = (
             "/docs",
             "/redoc",
             "/openapi.json",
             "/v1/docs",
             "/v1/redoc",
             "/v1/openapi.json",
+            "/v1/auth/login",
+            "/v1/auth/register",
+            "/v1/auth/validate-token",
             "/health",
             "/favicon.ico",
         )
+        return any(path.startswith(p) for p in PUBLIC_PREFIXES)
 
-        return any(path.startswith(p) for p in public_prefixes)
 
 
     async def _authenticate_user(self, token: str, session: Session) -> User:
