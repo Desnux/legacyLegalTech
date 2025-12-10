@@ -2,6 +2,8 @@ from fastapi import Request, HTTPException, Depends
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 import logging
+from fastapi.responses import JSONResponse
+
 
 from config import Config
 from database.ext_db import get_session, Session
@@ -41,11 +43,17 @@ class OptimizedAuthMiddleware(BaseHTTPMiddleware):
                 return await call_next(request)
             
             auth_header = request.headers.get("Authorization")
-            if not auth_header: 
+            if not auth_header:
                 raise HTTPException(
                     status_code=401,
                     detail="Authorization header required",
                     headers={"WWW-Authenticate": "Bearer"}
+                if not auth_header:
+                    return JSONResponse(
+                        status_code=401,
+                        content={"detail": "Authorization header required"},
+                        headers={"WWW-Authenticate": "Bearer"},
+                    )
                 )
             
             token = auth_header.replace("Bearer ", "")
