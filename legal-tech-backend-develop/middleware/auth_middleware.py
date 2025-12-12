@@ -84,17 +84,21 @@ class OptimizedAuthMiddleware(BaseHTTPMiddleware):
             "/v1/docs",
             "/v1/redoc",
             "/v1/openapi.json",
+
             "/v1/auth/login",
             "/v1/auth/register",
             "/v1/auth/validate-token",
+
             "/health",
             "/favicon.ico",
-            "/generate/",
-            "/Generate/",
-            "/generate/demand-exception-response/",
-            "/generate/demand-exception/",
+
+            # GENERATORS
+            "/v1/generate",
+            "/v1/extract",
         )
-        return any(path.startswith(p) for p in PUBLIC_PREFIXES)
+
+        return any(path == p or path.startswith(p + "/") for p in PUBLIC_PREFIXES)
+
 
 
 
