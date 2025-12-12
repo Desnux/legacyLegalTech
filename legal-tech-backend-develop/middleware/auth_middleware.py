@@ -89,6 +89,7 @@ class OptimizedAuthMiddleware(BaseHTTPMiddleware):
             "/v1/auth/validate-token",
             "/health",
             "/favicon.ico",
+            "/generate/",
             "/generate/demand-exception/",
         )
         return any(path.startswith(p) for p in PUBLIC_PREFIXES)
