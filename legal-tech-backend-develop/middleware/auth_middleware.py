@@ -90,6 +90,7 @@ class OptimizedAuthMiddleware(BaseHTTPMiddleware):
             "/health",
             "/favicon.ico",
             "/generate/",
+            "/Generate/",
             "/generate/demand-exception/",
         )
         return any(path.startswith(p) for p in PUBLIC_PREFIXES)
