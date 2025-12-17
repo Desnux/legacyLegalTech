@@ -27,6 +27,20 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
         if not self.input.nature:
             self.input.nature = JudicialCollectionLegalRequest.OTHER
         nature = self.input.nature
+        DETERMINISTIC_NATURES = {
+    JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY,
+        }
+
+        if nature in DETERMINISTIC_NATURES:
+            content = self._create_content(nature)
+        else:
+            if context := self.input.context:
+                request: Response = self.generator.invoke(self._create_prompt(nature, context))
+                metrics.llm_invocations += 1
+                content = request.output.strip()
+            else:
+                content = self._create_content(nature)
+
         if context := self.input.context:
             request: Response = self.generator.invoke(self._create_prompt(nature, context))
             metrics.llm_invocations += 1
