@@ -179,7 +179,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
                 sub_prompt = f"""
                 <specific-provisional-depository-example>
-                [Nombre completo del depositario provisional]
+                [Nombre completo del demandado]
                 </specific-provisional-depository-example>
                 <template>
                 RUEGO A US. tener presente que designo como depositario provisional de los bienes que se embarguen a
