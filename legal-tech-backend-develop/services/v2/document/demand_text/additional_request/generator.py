@@ -177,15 +177,13 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 </template>
                 """
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
-                if self.plural:
-                    return (
-                        "ROGAMOS A US. tener presente que designamos como depositario provisional de los bienes "
-                        "que se embarguen a los propios ejecutados, bajo su responsabilidad civil y criminal."
-                    )
-                return (
-                    "RUEGO A US. tener presente que designo como depositario provisional de los bienes que se "
-                    "embarguen a los propios ejecutados, bajo su responsabilidad civil y criminal."
-                )
+                sub_prompt = f"""
+                <template>
+                Agrega el texto que te envio entre comillas textual, solo modifica si es en singular o plural según corresponda:
+                RUEGO A US. tener presente que designo como depositario provisional de los bienes que se embarguen
+                al propio ejecutado, bajo su responsabilidad civil y criminal."
+                </template>
+                """
             case JudicialCollectionLegalRequest.INCLUDE_DOCUMENTS:
                 sub_prompt = f"""
                 <specific-documents-example>
