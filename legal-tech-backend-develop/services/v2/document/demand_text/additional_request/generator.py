@@ -196,11 +196,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 sub_prompt = f"""
                 <specific-documents-example>
                 1. Pagaré singularizado en lo principal de esta presentación, que funda la presente ejecución, con sus respectivas hojas de prolongación.
-                2. Certificados de dominio vigente e hipotecas y gravámenes, respecto de cada uno de los bienes inmuebles singularizados en el primer otrosí de esta presentación.
-                3. Contratos de hipoteca Repertorios N° 12357-2021, 13883-2021 y 13882-2021, en los cuales consta la constitución de las garantías hipotecarias a favor de Banco Consorcio.
-                </specific-documents-example>
-                <template>
-                RUEGO A US. tener por acompañados, con citación, copia de los siguientes documentos:
+                ALERTA Se debecompletar por el usuario con los documentos específicos que se van a acompañar.
                 {{specific_documents}}.
                 </template>
                 """
