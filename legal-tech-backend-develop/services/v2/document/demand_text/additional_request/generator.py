@@ -201,7 +201,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 </template>
                 <specific-documents-example>
                 1. Pagaré singularizado en lo principal de esta presentación, que funda la presente ejecución, con sus respectivas hojas de prolongación.
-                ------------Es deber del Usuario Acompañar y nombrar el resto de documentos.------------
+                ------------Es deber del Usuario Acompañar y nombrar el resto de documentos adicionales.------------
                 
                 """
             case JudicialCollectionLegalRequest.INDICATE_EMAILS:
