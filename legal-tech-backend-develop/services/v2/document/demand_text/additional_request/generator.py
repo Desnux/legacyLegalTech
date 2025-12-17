@@ -178,12 +178,9 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 """
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
                 sub_prompt = f"""
-                <specific-provisional-depository-example>
-                don Felipe Fernando Pizarro Corral, don Juan Hidalgo López, y doña María Luis Joannes
-                </specific-provisional-depository-example>
                 <template>
-                RUEGO A US. tener presente que designo como depositario provisional de los bienes que se embarguen a
-                {{specific_provisional_depository}}, bajo su responsabilidad civil y criminal.
+                RUEGO A US. tener presente que designo como depositario provisional de los bienes que se embarguen
+                al propio ejecutado, bajo su responsabilidad civil y criminal.
                 </template>
                 """
             case JudicialCollectionLegalRequest.INCLUDE_DOCUMENTS:
