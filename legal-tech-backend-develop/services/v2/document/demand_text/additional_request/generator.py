@@ -197,7 +197,8 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 <specific-documents-example>
                 RUEGO A US. tener por acompañados, con citación, copia de los siguientes documentos:
                 1. Pagaré singularizado en lo principal de esta presentación, que funda la presente ejecución, con sus respectivas hojas de prolongación.
-                Usuario debe Acompañar documento.
+                2....
+                Es deber del Usuario Acompañar y nombrar el resto de documentos.
                 <template>
                 RUEGO A US. tener por acompañados, con citación, copia de los siguientes documentos:
                 {{specific_documents}}.
