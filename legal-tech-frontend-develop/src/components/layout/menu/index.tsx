@@ -24,13 +24,13 @@ const executiveStructure: RouteItem[] = [
     name: "Generar demanda",
     subroutes: [],
   },
-  /*
+/* Se descomento esto */
   {
     route: "/demand-text/sender",
     name: "Enviar demanda",
     subroutes: [],
   },
-  */
+
   {
     route: "/supervisor/status",
     name: "Estado de avance",
