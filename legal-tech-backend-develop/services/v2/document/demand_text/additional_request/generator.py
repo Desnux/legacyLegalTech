@@ -177,12 +177,15 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 </template>
                 """
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
-                sub_prompt = f"""
-                <template>
-                RUEGO A US. tener presente que designo como depositario provisional de los bienes que se embarguen
-                al propio ejecutado, bajo su responsabilidad civil y criminal.
-                </template>
-                """
+                if self.plural:
+                    return (
+                        "ROGAMOS A US. tener presente que designamos como depositario provisional de los bienes "
+                        "que se embarguen a los propios ejecutados, bajo su responsabilidad civil y criminal."
+                    )
+                return (
+                    "RUEGO A US. tener presente que designo como depositario provisional de los bienes que se "
+                    "embarguen a los propios ejecutados, bajo su responsabilidad civil y criminal."
+                )
             case JudicialCollectionLegalRequest.INCLUDE_DOCUMENTS:
                 sub_prompt = f"""
                 <specific-documents-example>
