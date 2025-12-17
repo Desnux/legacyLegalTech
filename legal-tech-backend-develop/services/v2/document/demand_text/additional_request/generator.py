@@ -183,7 +183,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 </specific-provisional-depository-example>
                 <template>
                 RUEGO A US. tener presente que designo como depositario provisional de los bienes que se embarguen a
-                {{specific_provisional_depository}}, bajo su responsabilidad civil y criminal.
+                {{demandado/ejecutado}}, bajo su responsabilidad civil y criminal.
                 </template>
                 """
             case JudicialCollectionLegalRequest.INCLUDE_DOCUMENTS:
