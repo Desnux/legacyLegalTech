@@ -195,8 +195,11 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
             case JudicialCollectionLegalRequest.INCLUDE_DOCUMENTS:
                 sub_prompt = f"""
                 <specific-documents-example>
+                RUEGO A US. tener por acompañados, con citación, copia de los siguientes documentos:
                 1. Pagaré singularizado en lo principal de esta presentación, que funda la presente ejecución, con sus respectivas hojas de prolongación.
-                ALERTA Se debecompletar por el usuario con los documentos específicos que se van a acompañar.
+                Usuario debe Acompañar documento.
+                <template>
+                RUEGO A US. tener por acompañados, con citación, copia de los siguientes documentos:
                 {{specific_documents}}.
                 </template>
                 """
