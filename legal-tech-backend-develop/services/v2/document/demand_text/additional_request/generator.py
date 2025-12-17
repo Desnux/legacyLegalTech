@@ -196,6 +196,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 sub_prompt = f"""
                 <template>
                 RUEGO A US. tener por acompañados, con citación, copia de los siguientes documentos:
+                1. Pagaré singularizado en lo principal de esta presentación, que funda la presente ejecución, con sus respectivas hojas de prolongación.
                 {{specific_documents}}.
                 </template>
                 <specific-documents-example>
