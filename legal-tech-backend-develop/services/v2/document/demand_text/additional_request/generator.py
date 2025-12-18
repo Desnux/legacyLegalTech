@@ -216,9 +216,6 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 <template>
                 RUEGO A US. tener presente que señalo, para la traba del embargo,
                 todos los bienes de los ejecutados que estime suficientes el Ministro de Fe encargado de la diligencia, pudiendo embargarlos a mera petición verbal del ejecutante.
-                {{specific_goods}}"
-                Así mismo, vengo a señalar los bienes del avalista que se indican a continuación:
-                {{specific_goods_of_avalist}}
                 </template>
                 """
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
