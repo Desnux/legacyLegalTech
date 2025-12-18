@@ -79,7 +79,10 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 content = request.output.strip()
             else:
                 content = self._create_content(nature)
-        
+        structure = DemandTextAdditionalRequestStructure(content=content)
+        structure.normalize()
+        metrics.time = round(time.time() - start_time, 4)
+        return DemandTextAdditionalRequestGeneratorOutput(metrics=metrics, structured_output=structure if structure is not None else None)
     
     def _detect_debtor_roles(self, context: str | None) -> set[str]:
         """
@@ -100,11 +103,6 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
 
         return roles
 
-        structure = DemandTextAdditionalRequestStructure(content=content)
-        structure.normalize()
-
-        metrics.time = round(time.time() - start_time, 4)
-        return DemandTextAdditionalRequestGeneratorOutput(metrics=metrics, structured_output=structure if structure is not None else None)
 
     def _create_content(self, nature: JudicialCollectionLegalRequest) -> str | None:
         prefix = "ROGAMOS A US." if self.plural else "RUEGO A US."
@@ -249,7 +247,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                     base_instruction = (
                         "Idica al usuario que no se detectaron roles claros de ejecutado o aval en el contexto proporcionado. "
                     )
-                    
+
                 sub_prompt = f"""
                 {base_instruction}
 
