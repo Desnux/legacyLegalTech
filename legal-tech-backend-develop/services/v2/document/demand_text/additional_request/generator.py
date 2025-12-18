@@ -79,7 +79,26 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 content = request.output.strip()
             else:
                 content = self._create_content(nature)
+        
+    
+    def _detect_debtor_roles(self, context: str | None) -> set[str]:
+        """
+        Returns a set with possible values: {'ejecutado', 'aval'}
+        """
+        if not context:
+            return set()
 
+        text = context.lower()
+
+        roles = set()
+
+        if "aval" in text:
+            roles.add("aval")
+
+        if any(word in text for word in ("ejecutado", "demandado", "deudor")):
+            roles.add("ejecutado")
+
+        return roles
 
         structure = DemandTextAdditionalRequestStructure(content=content)
         structure.normalize()
@@ -207,18 +226,43 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
         sub_prompt = ""
         match nature:
             case JudicialCollectionLegalRequest.INDICATE_ASSETS_SEIZURE_GOODS_FOR_LOCKDOWN:
+                roles = self._detect_debtor_roles(context)
+                if roles == {"ejecutado"}:
+                    base_instruction = (
+                        "Los bienes indicados pertenecen exclusivamente al ejecutado. "
+                        "Redacta el OTROSÍ refiriéndote únicamente a bienes del ejecutado. "
+                        "No menciones avales ni terceros."
+                    )
+                elif roles == {"aval"}:
+                    base_instruction = (
+                        "Los bienes indicados pertenecen exclusivamente al aval. "
+                        "Redacta el OTROSÍ refiriéndote únicamente a bienes del aval. "
+                        "No atribuyas bienes al ejecutado."
+                    )
+                elif roles == {"ejecutado", "aval"}:
+                    base_instruction = (
+                        "Los bienes indicados pertenecen tanto al ejecutado como al aval. "
+                        "Distingue claramente en la redacción qué bienes corresponden a cada uno, "
+                        "sin mezclar roles."
+                    )
+                else:
+                    base_instruction = (
+                        "Idica al usuario que no se detectaron roles claros de ejecutado o aval en el contexto proporcionado. "
+                    )
+                    
                 sub_prompt = f"""
-                <template>
-                RUEGO A US. tener presente que señalo, para la traba del embargo,
-                todos los bienes de los ejecutados que estime suficientes el Ministro de Fe encargado de la diligencia, 
-                pudiendo embargarlos a mera petición verbal del ejecutante.
-                </template>
-                <specific-goods-example>
-                Particularmente, vengo en señalar los bienes del ejecutado que se indican a continuación:
-                - Camion marca Prueba modelo test, patente AAAA00, del año 1111 registrado a nombre de {{ejecutado}}.
-                Así mismo, vengo a señalar los bienes del avalista que se indican a continuación:
-                </specific-goods-example>
+                {base_instruction}
+
+                Contexto de bienes:
+                {context}
+
+                Instrucciones:
+                - No inventes bienes.
+                - No inventes roles.
+                - Utiliza únicamente la información del contexto.
+                - Mantén redacción jurídica chilena formal.
                 """
+
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
                 sub_prompt = f"""
                 <specific-provisional-depository-example>
