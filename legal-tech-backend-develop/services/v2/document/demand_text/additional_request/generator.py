@@ -212,8 +212,6 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 Particularmente, vengo en señalar los bienes del ejecutado que se indican a continuación:
                 - Camion marca Prueba modelo test, patente AAAA00, del año 1111 registrado a nombre de {{ejecutado}}.
                 Así mismo, vengo a señalar los bienes del avalista que se indican a continuación:
-                - El inmueble inscrito a fojas 0000 Nº 00000 del Registro de Propiedad del Conservador de Bienes Raíces de ciudad del año 1111.
-                - La participación accionaria o derechos en las siguientes sociedades: datodeprueba LIMITADA, RUT Nº 00.000.000-0, participación x%
                 </specific-goods-example>
                 <template>
                 RUEGO A US. tener presente que señalo, para la traba del embargo,
