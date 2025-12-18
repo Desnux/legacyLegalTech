@@ -1,3 +1,4 @@
+import logging
 import time
 
 from fastapi import logger
@@ -301,9 +302,8 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
         """
 
 
-        logger.info(
+        logging.info(
         f"[DEBUG] nature={self.input.nature} | context={repr(self.input.context)}"
-)
-
+        )
 
         return prompt
