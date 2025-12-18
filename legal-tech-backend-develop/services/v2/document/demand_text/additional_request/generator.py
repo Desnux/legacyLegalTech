@@ -256,7 +256,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
 
                 Contexto de bienes:
                 {context}
-
+                """
 
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
                 sub_prompt = f"""
