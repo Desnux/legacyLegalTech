@@ -257,12 +257,6 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 Contexto de bienes:
                 {context}
 
-                Instrucciones:
-                - No inventes bienes.
-                - No inventes roles.
-                - Utiliza únicamente la información del contexto.
-                - Mantén redacción jurídica chilena formal.
-                """
 
             case JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
                 sub_prompt = f"""
