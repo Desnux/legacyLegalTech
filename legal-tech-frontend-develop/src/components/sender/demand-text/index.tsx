@@ -24,7 +24,7 @@ interface DemandTextSenderProps {
   onSenderSubmit: (data: Inputs, files: FileItem[]) => Promise<boolean>;
 }
 
-const DemandTextSender = ({ className, filled = true, loading, debug, setDebug, onSenderSubmit }: DemandTextSenderProps) => {
+const DemandTextSender = ({ className, filled = false, loading, debug, setDebug, onSenderSubmit }: DemandTextSenderProps) => {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [isModalConfirmOpen, setIsModalConfirmOpen] = useState(false);
   const { register, reset, handleSubmit, setValue, watch, formState: { errors } } = useForm<Inputs>({
