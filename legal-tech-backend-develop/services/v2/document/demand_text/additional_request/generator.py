@@ -29,31 +29,30 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
             self.input.nature = JudicialCollectionLegalRequest.OTHER
         nature = self.input.nature
         raw_context = self.input.context
-        # Normalize context: treat empty or placeholder content as None
         context = raw_context.strip() if raw_context and raw_context.strip() else None
-
 
         # 🔒 Never use LLM for provisional depositary
         if nature == JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
             content = self._create_content(nature)
 
-        # 🔑 Use LLM for assets ONLY if there are assets
+        # 🔑 Assets seizure: LLM only if there are actual assets
         elif nature == JudicialCollectionLegalRequest.INDICATE_ASSETS_SEIZURE_GOODS_FOR_LOCKDOWN:
-            if context and context.strip():
+            if context:
                 request: Response = self.generator.invoke(self._create_prompt(nature, context))
                 metrics.llm_invocations += 1
                 content = request.output.strip()
             else:
                 content = self._create_content(nature)
 
-        # 🔁 Default behavior (all other natures)
+        # 🔁 Default behavior
         else:
-            if context and context.strip():
+            if context:
                 request: Response = self.generator.invoke(self._create_prompt(nature, context))
                 metrics.llm_invocations += 1
                 content = request.output.strip()
             else:
                 content = self._create_content(nature)
+
 
 
 
