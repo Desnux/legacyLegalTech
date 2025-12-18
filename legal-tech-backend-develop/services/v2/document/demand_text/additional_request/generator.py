@@ -229,7 +229,10 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                     base_instruction = (
                         "Los bienes indicados pertenecen exclusivamente al ejecutado. "
                         "Redacta el OTROSÍ refiriéndote únicamente a bienes del ejecutado. "
-                        "No menciones avales ni terceros."
+                        "No menciones avales ni terceros y tampoco agregues la frase OtroSI."
+                        "Basate en el texto ROGAMOS A US. tener presente que señalamos para la traba del embargo todos los bienes del "
+                        "ejecutado que estime suficientes el Ministro de Fe encargado de la diligencia, pudiendo "
+                        "embargarlos a mera petición verbal del ejecutante."
                     )
                 elif roles == {"aval"}:
                     base_instruction = (
