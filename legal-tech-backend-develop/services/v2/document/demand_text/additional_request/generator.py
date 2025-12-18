@@ -246,11 +246,11 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                     base_instruction = (
                         "Redacta el OTROSÍ refiriéndote a los bienes del ejecutado y aval. "
                         "No menciones a terceros y tampoco agregues la frase OtroSI."
+                        "Distingue claramente en la redacción qué bienes corresponden a cada uno, "
+                        "sin mezclar roles."
                         "Usa el siguiente texto, no lo modifiques ROGAMOS A US. tener presente que señalamos para la traba del embargo todos los bienes del "
                         "ejecutado que estime suficientes el Ministro de Fe encargado de la diligencia, pudiendo "
                         "embargarlos a mera petición verbal del ejecutante."
-                        "Distingue claramente en la redacción qué bienes corresponden a cada uno, "
-                        "sin mezclar roles."
                     )
                 else:
                     base_instruction = (
