@@ -1,8 +1,6 @@
 import logging
 import time
 
-from fastapi import logger
-
 from models.pydantic import JudicialCollectionLegalRequest, MissingPaymentDocumentType
 from services.v2.document.base import BaseGenerator, Metrics, Response
 from .models import (
@@ -30,18 +28,30 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
         if not self.input.nature:
             self.input.nature = JudicialCollectionLegalRequest.OTHER
         nature = self.input.nature
-        nature = self.input.nature
+        context = self.input.context
 
-        # 🔒 Deterministic output for provisional depositary (never use LLM)
+        # 🔒 Never use LLM for provisional depositary
         if nature == JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
             content = self._create_content(nature)
-        else:
-            if context := self.input.context:
+
+        # 🔑 Use LLM for assets ONLY if there are assets
+        elif nature == JudicialCollectionLegalRequest.INDICATE_ASSETS_SEIZURE_GOODS_FOR_LOCKDOWN:
+            if context and context.strip():
                 request: Response = self.generator.invoke(self._create_prompt(nature, context))
                 metrics.llm_invocations += 1
                 content = request.output.strip()
             else:
                 content = self._create_content(nature)
+
+        # 🔁 Default behavior (all other natures)
+        else:
+            if context and context.strip():
+                request: Response = self.generator.invoke(self._create_prompt(nature, context))
+                metrics.llm_invocations += 1
+                content = request.output.strip()
+            else:
+                content = self._create_content(nature)
+
 
 
         structure = DemandTextAdditionalRequestStructure(content=content)
@@ -300,10 +310,4 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
         - Add honorifics to names of people other than attorneys, such as don or doña, exclude them from names of groups, businesses or institutions.
         - If the are decimal values with the word "participación" at the left of the number, you must indicate the percentage, for example, if the value is 0.2, you must indicate 20%
         """
-
-
-        logging.info(
-        f"[DEBUG] nature={self.input.nature} | context={repr(self.input.context)}"
-        )
-
         return prompt
