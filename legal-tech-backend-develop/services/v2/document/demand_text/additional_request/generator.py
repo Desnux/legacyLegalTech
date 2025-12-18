@@ -1,6 +1,8 @@
 import logging
 import time
 
+from sqlalchemy import text
+
 from models.pydantic import JudicialCollectionLegalRequest, MissingPaymentDocumentType
 from services.v2.document.base import BaseGenerator, Metrics, Response
 from .models import (
@@ -18,6 +20,29 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
         self.input = input
         self.generator = self._create_structured_generator(Response)
         self.plural = len(self.input.sponsoring_attorneys or []) > 1
+
+    def _context_has_assets(self, context: str | None) -> bool:
+        if not context:
+            return False
+
+        text = context.lower()
+
+        ASSET_KEYWORDS = (
+            "inmueble",
+            "vehículo",
+            "vehiculo",
+            "patente",
+            "rol ",
+            "registro de propiedad",
+            "fojas",
+            "avalu",
+            "sociedad",
+            "acciones",
+            "derechos",
+            "aval",
+        )
+        return any(keyword in text for keyword in ASSET_KEYWORDS)
+
     
     def generate(self) -> DemandTextAdditionalRequestGeneratorOutput:
         """Generate demand text additional request structure from input."""
@@ -29,7 +54,9 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
             self.input.nature = JudicialCollectionLegalRequest.OTHER
         nature = self.input.nature
         raw_context = self.input.context
+
         context = raw_context.strip() if raw_context and raw_context.strip() else None
+        has_assets = self._context_has_assets(context)
 
         # 🔒 Never use LLM for provisional depositary
         if nature == JudicialCollectionLegalRequest.APPOINT_PROVISIONAL_DEPOSITARY:
@@ -37,7 +64,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
 
         # 🔑 Assets seizure: LLM only if there are actual assets
         elif nature == JudicialCollectionLegalRequest.INDICATE_ASSETS_SEIZURE_GOODS_FOR_LOCKDOWN:
-            if context:
+            if has_assets:
                 request: Response = self.generator.invoke(self._create_prompt(nature, context))
                 metrics.llm_invocations += 1
                 content = request.output.strip()
@@ -52,8 +79,6 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 content = request.output.strip()
             else:
                 content = self._create_content(nature)
-
-
 
 
         structure = DemandTextAdditionalRequestStructure(content=content)
