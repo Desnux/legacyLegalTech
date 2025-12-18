@@ -39,7 +39,10 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
             if context and context.strip():
                 request: Response = self.generator.invoke(self._create_prompt(nature, context))
                 metrics.llm_invocations += 1
-                content = request.output.strip()
+                raw_context = self.input.context
+                # Normalize context: treat empty or placeholder content as None
+                context = raw_context.strip() if raw_context and raw_context.strip() else None
+
             else:
                 content = self._create_content(nature)
 
