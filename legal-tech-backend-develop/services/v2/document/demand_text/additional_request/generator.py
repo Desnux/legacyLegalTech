@@ -209,6 +209,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
             case JudicialCollectionLegalRequest.INDICATE_ASSETS_SEIZURE_GOODS_FOR_LOCKDOWN:
                 sub_prompt = f"""
                 <specific-goods-example>
+                Particularmente, vengo en señalar los bienes del ejecutado que se indican a continuación:
                 - Camion marca Prueba modelo test, patente AAAA00, del año 1111 registrado a nombre de {{ejecutado}}.
                 Así mismo, vengo a señalar los bienes del avalista que se indican a continuación:
                 - El inmueble inscrito a fojas 0000 Nº 00000 del Registro de Propiedad del Conservador de Bienes Raíces de ciudad del año 1111.
@@ -217,7 +218,6 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 <template>
                 RUEGO A US. tener presente que señalo, para la traba del embargo,
                 todos los bienes de los ejecutados que estime suficientes el Ministro de Fe encargado de la diligencia, pudiendo embargarlos a mera petición verbal del ejecutante.
-                Particularmente, vengo en señalar los bienes del ejecutado que se indican a continuación:
                 {{specific_goods}}"
                 Así mismo, vengo a señalar los bienes del avalista que se indican a continuación:
                 {{specific_goods_of_avalist}}
