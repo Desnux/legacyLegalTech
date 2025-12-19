@@ -3,6 +3,18 @@ from pydantic import BaseModel, Field
 
 from .legal_representative import LegalRepresentative
 
+def _is_legal_entity_name(name: str | None) -> bool:
+    if not name:
+        return False
+    t = name.lower()
+    markers = (
+        "spa", "sp.a", "s.a", "ltda", "eirl", "limitada",
+        "sociedad", "inversiones", "inmobiliaria", "comercial",
+        "agrícola", "servicios",
+    )
+    return any(m in t for m in markers)
+
+
 
 class DefendantType(str, Enum):
     DEBTOR = "debtor"
@@ -34,15 +46,31 @@ class Defendant(BaseModel):
         return 0
 
     def normalize(self) -> None:
-        if self.identifier:
-            if len(self.identifier) > 2:
-                self.identifier = self.identifier[:-2].replace("-", ".") + "-" + self.identifier[-2 + 1:].lower()
-                numeric_part = self.identifier[:-2].replace(".", "").strip()
-                if numeric_part.isdigit() and int(numeric_part) < 50000000:
-                    self.legal_representatives = None
-                    self.entity_type = DefendantEntityType.NATURAL
-                else:
-                    self.entity_type = DefendantEntityType.LEGAL
+        # 1) Decide tipo de entidad por el NOMBRE (más confiable que el umbral del RUT)
+        self.entity_type = (
+            DefendantEntityType.LEGAL
+            if _is_legal_entity_name(self.name)
+            else DefendantEntityType.NATURAL
+        )
+
+        # 2) Normaliza identificador si existe (sin depender del umbral para decidir entidad)
+        if self.identifier and len(self.identifier) > 2:
+            try:
+                self.identifier = (
+                    self.identifier[:-2].replace("-", ".")
+                    + "-"
+                    + self.identifier[-1:].lower()
+                )
+            except Exception:
+                # si viene malformateado, no rompemos el flujo
+                pass
+
+        # 3) Regla de negocio: persona natural NO tiene representante legal
+        if self.entity_type == DefendantEntityType.NATURAL:
+            self.legal_representatives = None
+
+        # 4) Si quedó como persona jurídica, normaliza reps si existen
         if self.legal_representatives:
             for rep in self.legal_representatives:
                 rep.normalize()
+
