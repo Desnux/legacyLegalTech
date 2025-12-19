@@ -158,6 +158,13 @@ class DemandTextInputExtractor(BaseExtractor):
                         # SOLO personas jurídicas pueden arrastrar representantes legales
                         legal_reps = debtor.legal_representatives
 
+                    logging.warning(
+                        f"[DEF DEBUG] name={debtor.name} | "
+                        f"is_legal_entity={_is_legal_entity_name(debtor.name)} | "
+                        f"reps_final={legal_reps}"
+                    )
+
+
                     information.defendants.append(Defendant(
                         name=debtor.name,
                         identifier=debtor.identifier,
