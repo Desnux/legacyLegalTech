@@ -92,6 +92,7 @@ class DemandTextMainRequestGenerator(BaseGenerator):
         - If you are missing information to replace a placeholder, remove the placeholder from the filled template and adjust the text around it so it reads naturally, NEVER leave a placeholder in.
         - If amount_currency is not CLP, you must indicate the currency type after amount or pending_amount, for example in the case of USD: $1.000.000.- USD
         - Add honorifics to names of people other than attorneys, such as don or doña, exclude them from names of groups, businesses or institutions.
+        - If a debtor has legal_representatives inside <information>, include them as "representada por ..."; otherwise omit any debtor representative mention. Never use creditor data for the debtor.
         """
         return prompt
 
@@ -107,6 +108,7 @@ class DemandTextMainRequestGenerator(BaseGenerator):
             (
                 "RUEGO A US. tener por interpuesta la presente demanda ejecutiva "
                 "en contra de {debtor.name}, "
+                "[SI Y SOLO SI en <information> el debtor tiene legal_representatives: agregar ', representada por <NOMBRE(S)>' ], "
                 "en su calidad de deudor principal, y en contra de {co_debtor.name}, "
                 "en su calidad de aval, fiador y codeudor solidario, ambos ya individualizados, "
                 "ordenando se despache mandamiento de ejecución y embargo en su contra "
@@ -120,7 +122,8 @@ class DemandTextMainRequestGenerator(BaseGenerator):
             lines.append(
                 (
                     "RUEGO A US. tener por interpuesta la presente demanda ejecutiva "
-                    "en contra de {debtor.name}, representada por {debtor.legal_representative.name}, "
+                    "en contra de {debtor.name}, "
+                    "[SI Y SOLO SI en <information> el debtor tiene legal_representatives: agregar ', representada por <NOMBRE(S)>' ], "
                     "en su calidad de deudor principal, ya individualizado, "
                     "ordenando se despache mandamiento de ejecución y embargo en su contra "
                     "por la suma total de ${amount_in_dispute_as_number}.- "

@@ -86,6 +86,8 @@ class DemandTextOpeningGenerator(BaseGenerator):
         - For each pair of addresses (creditor section and debtor section) apply the rule independently:
           • If the two addresses are the same, replace the whole phrase with "ambos con domicilio en {{address}}".
           • If they are different, write "con domicilio en {{address1}} y {{address2}}, respectivamente".
+        - IMPORTANT: creditor_legal_representatives belong ONLY to the creditor. Never use them as debtor representatives.
+        - Debtor representatives must be taken ONLY from the corresponding debtor inside "debtors" (its legal_representatives). If none exist, do NOT mention a debtor representative.
         """
         return prompt
 
@@ -107,10 +109,13 @@ class DemandTextOpeningGenerator(BaseGenerator):
                 "Que en la representación que invisto, vengo en interponer la presente demanda "
                 "ejecutiva en contra de {debtor.name}, {debtor_economic_activity}, Rol Único Tributario N° "
                 "{debtor.identifier}, con domicilio para estos efectos en {debtor.address}, "
-                "en su calidad de deudor principal, "
+                "[SI Y SOLO SI el deudor es persona jurídica y en <information> existe(n) legal_representatives para este deudor: "
+                "agregar a continuación ', representada legalmente por <NOMBRE(S) REPRESENTANTE(S)>', y aplicar la regla de domicilios "
+                "si corresponde], en su calidad de deudor principal, "
                 "y en contra de {co_debtor.name}, ya individualizado, en su calidad de aval, fiador y "
                 "codeudor solidario, en base de las consideraciones que a continuación paso a exponer:"
             ),
+
         ])
         if document_count > 1:
             lines.append("Mi mandante, {creditor.name}, es dueño y beneficiario de los siguientes documentos:")
