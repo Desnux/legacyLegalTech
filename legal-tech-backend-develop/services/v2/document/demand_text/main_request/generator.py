@@ -7,6 +7,30 @@ from .models import (
     DemandTextMainRequestStructure,
 )
 
+def is_legal_entity(name: str | None) -> bool:
+    if not name:
+        return False
+
+    name_l = name.lower()
+    return any(
+        token in name_l
+        for token in (
+            "spa",
+            "sp.a",
+            "s.a",
+            "ltda",
+            "limitada",
+            "eirl",
+            "sociedad",
+            "inversiones",
+            "inmobiliaria",
+            "comercial",
+            "agrícola",
+            "servicios",
+        )
+    )
+
+
 def format_clp(amount: int | str) -> str:
     try:
         amount_int = int(str(amount).replace(".", "").replace(",", ""))
@@ -56,8 +80,8 @@ class DemandTextMainRequestGenerator(BaseGenerator):
 
             # Representación legal SOLO si viene en el pagaré
             debtor_representation = ""
-
-            if debtor.legal_representatives:
+            # 🔒 SOLO personas jurídicas pueden tener representante legal
+            if is_legal_entity(debtor.name) and debtor.legal_representatives:
                 reps = [
                     rep.name
                     for rep in debtor.legal_representatives
