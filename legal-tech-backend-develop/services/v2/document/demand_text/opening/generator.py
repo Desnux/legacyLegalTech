@@ -106,11 +106,8 @@ class DemandTextOpeningGenerator(BaseGenerator):
             (
                 "Que en la representación que invisto, vengo en interponer la presente demanda "
                 "ejecutiva en contra de {debtor.name}, {debtor_economic_activity}, Rol Único Tributario N° "
-                "{debtor.identifier}, representada por {debtor.legal_representative.name}, "
-                "{debtor.legal_representative.occupation}, {debtor.legal_representative.civil_status}, "
-                "{debtor.legal_representative.nationality}, cédula de identidad N° "
-                "{debtor.legal_representative.identifier}, con domicilio para estos efectos en "
-                "{debtor.address} y {debtor.legal_representative.address}, respectivamente, en su calidad de deudor principal, "
+                "{debtor.identifier}, con domicilio para estos efectos en {debtor.address}, "
+                "en su calidad de deudor principal, "
                 "y en contra de {co_debtor.name}, ya individualizado, en su calidad de aval, fiador y "
                 "codeudor solidario, en base de las consideraciones que a continuación paso a exponer:"
             ),
