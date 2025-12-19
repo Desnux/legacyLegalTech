@@ -192,7 +192,19 @@ class DemandExceptionGenerator(BaseGenerator):
                     data["plaintiffs"] = [plaintiff.model_dump(exclude={"identifier"}) for plaintiff in self.input.plaintiffs or []]
                 if nature.demand_text_date_is_relevant():
                     data["plaintiff_filed_demand_text_date"] = self.input.demand_text_date
-                data["defendants"] = [defendant.model_dump(exclude={"identifier", "legal_representatives"}) for defendant in self.input.defendants or []]
+                data["defendants"] = []
+                for defendant in self.input.defendants or []:
+                    dumped = defendant.model_dump(exclude={"identifier", "legal_representatives"})
+
+                    # 🔴 CORRECCIÓN CLAVE:
+                    # Si es persona natural, dejar explícito que actúa por derecho propio
+                    if defendant.entity_type == "natural":
+                        dumped["representation"] = "actúa por derecho propio"
+                    else:
+                        # Persona jurídica → puede tener representante legal
+                        dumped["representation"] = "representado legalmente"
+
+                    data["defendants"].append(dumped)
                 if nature.court_is_relevant():
                     data["court_city"] = self.input.court_city
                 if nature.plaintiff_attorneys_are_relevant():
