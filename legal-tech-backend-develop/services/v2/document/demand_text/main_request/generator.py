@@ -104,18 +104,18 @@ class DemandTextMainRequestGenerator(BaseGenerator):
         ]
         if self.input.co_debtors:
             lines.append(
-                (
-                    "RUEGO A US. tener por interpuesta la presente demanda ejecutiva "
-                    "en contra de {debtor.name}, representada por {debtor.legal_representative.name}, "
-                    "en su calidad de deudor principal, y en contra de {co_debtor.name}, "
-                    "en su calidad de aval, fiador y codeudor solidario, ambos ya individualizados, "
-                    "ordenando se despache mandamiento de ejecución y embargo en su contra "
-                    "por la suma total de ${amount_in_dispute_as_number}.- "
-                    "({amount_in_dispute_as_words_read_aloud}), más los intereses que correspondan, "
-                    "ordenando se siga adelante con esta ejecución hasta hacer a mi representado "
-                    "entero y cumplido pago de lo adeudado, con costas."
-                )
+            (
+                "RUEGO A US. tener por interpuesta la presente demanda ejecutiva "
+                "en contra de {debtor.name}, "
+                "en su calidad de deudor principal, y en contra de {co_debtor.name}, "
+                "en su calidad de aval, fiador y codeudor solidario, ambos ya individualizados, "
+                "ordenando se despache mandamiento de ejecución y embargo en su contra "
+                "por la suma total de ${amount_in_dispute_as_number}.- "
+                "({amount_in_dispute_as_words_read_aloud}), más los intereses que correspondan, "
+                "ordenando se siga adelante con esta ejecución hasta hacer a mi representado "
+                "entero y cumplido pago de lo adeudado, con costas."
             )
+        )
         else:
             lines.append(
                 (
