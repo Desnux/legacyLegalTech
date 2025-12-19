@@ -7,6 +7,15 @@ from .models import (
     DemandTextMainRequestStructure,
 )
 
+def format_clp(amount: int | str) -> str:
+    try:
+        amount_int = int(str(amount).replace(".", "").replace(",", ""))
+    except (TypeError, ValueError):
+        return ""
+
+    return f"${amount_int:,}".replace(",", ".")
+
+
 
 class DemandTextMainRequestGenerator(BaseGenerator):
     """Demand text main request generator (deterministic, no LLM)."""
@@ -102,14 +111,13 @@ class DemandTextMainRequestGenerator(BaseGenerator):
                     )
 
         # Cierre de la petición
+        formatted_amount = format_clp(self.input.amount)
         current_line += (
             ", ordenando se despache mandamiento de ejecución y embargo en su contra "
-            f"por la suma total de ${self.input.amount}.- "
-            f"({self.input.amount}), más los intereses que correspondan, "
+            f"por la suma total de {formatted_amount}.-, más los intereses que correspondan, "
             "ordenando se siga adelante con esta ejecución hasta hacer a mi representado "
             "entero y cumplido pago de lo adeudado, con costas."
         )
-
         lines.append(current_line)
 
         return "\n\n".join(lines)
