@@ -88,6 +88,10 @@ class DemandTextOpeningGenerator(BaseGenerator):
           • If they are different, write "con domicilio en {{address1}} y {{address2}}, respectivamente".
         - IMPORTANT: creditor_legal_representatives belong ONLY to the creditor. Never use them as debtor representatives.
         - Debtor representatives must be taken ONLY from the corresponding debtor inside "debtors" (its legal_representatives). If none exist, do NOT mention a debtor representative.
+        - IMPORTANT: "legal_representatives" at the root level belong ONLY to the PLAINTIFF (creditor).
+        - NEVER use plaintiff legal representatives as debtor or co-debtor (aval).
+        - The co-debtor (aval) NEVER has a legal representative unless explicitly stated inside its own object.
+        - If a co-debtor (aval) has no legal_representatives in its data, do NOT mention any representative for the aval.
         """
         return prompt
 

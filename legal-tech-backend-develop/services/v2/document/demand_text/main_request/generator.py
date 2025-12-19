@@ -93,6 +93,7 @@ class DemandTextMainRequestGenerator(BaseGenerator):
         - If amount_currency is not CLP, you must indicate the currency type after amount or pending_amount, for example in the case of USD: $1.000.000.- USD
         - Add honorifics to names of people other than attorneys, such as don or doña, exclude them from names of groups, businesses or institutions.
         - If a debtor has legal_representatives inside <information>, include them as "representada por ..."; otherwise omit any debtor representative mention. Never use creditor data for the debtor.
+        - The co-debtor (aval) must NEVER be assigned any legal representative from the plaintiff or any other party.
         """
         return prompt
 
