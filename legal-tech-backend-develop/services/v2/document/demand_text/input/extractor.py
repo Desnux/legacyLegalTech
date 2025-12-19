@@ -40,11 +40,27 @@ from .models import (
     DemandTextUniqueLitigants,
 )
 
+"""Helper representante legal"""
+
+def _is_legal_entity_name(name: str | None) -> bool:
+    if not name:
+        return False
+    t = name.lower()
+    return any(
+        marker in t
+        for marker in (
+            "spa", "sp.a", "s.a", "ltda", "limitada",
+            "eirl", "sociedad", "inversiones",
+            "inmobiliaria", "comercial", "agrícola", "servicios",
+        )
+    )
+
 
 USD_TO_CLP_EXCHANGE = 1000
 
 
 class DemandTextInputExtractor(BaseExtractor):
+
     """Demand text input extractor."""
 
     def __init__(self, input: DemandTextInputExtractorInput) -> None:
@@ -137,22 +153,31 @@ class DemandTextInputExtractor(BaseExtractor):
                     if not information.city:
                         information.city = city
                 for debtor in document_output.debtors or []:
+                    legal_reps = None
+                    if _is_legal_entity_name(debtor.name):
+                        # SOLO personas jurídicas pueden arrastrar representantes legales
+                        legal_reps = debtor.legal_representatives
+
                     information.defendants.append(Defendant(
                         name=debtor.name,
                         identifier=debtor.identifier,
                         occupation=debtor.occupation,
                         address=debtor.address,
-                        legal_representatives=debtor.legal_representatives,
+                        legal_representatives=legal_reps,
                         type=DefendantType.DEBTOR,
                     ))
                 if document_type == MissingPaymentDocumentType.PROMISSORY_NOTE:
                     for debtor in document_output.co_debtors or []:
+                        legal_reps = None
+                        if _is_legal_entity_name(debtor.name):
+                            legal_reps = debtor.legal_representatives
+
                         information.defendants.append(Defendant(
                             name=debtor.name,
                             identifier=debtor.identifier,
                             occupation=debtor.occupation,
                             address=debtor.address,
-                            legal_representatives=debtor.legal_representatives,
+                            legal_representatives=legal_reps,
                             type=DefendantType.CO_DEBTOR,
                         ))
                 information.creditors.extend(document_output.creditors or [])
