@@ -303,7 +303,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                 sub_prompt = f"""
                 <template>
                 RUEGO A US. tener presente que mi personería para actuar en representación de {{plaintiff.name}}, consta de le escritura pública de mandato
-                judicial, copia que vengo en acompañar en este acto, con citación. {{additional_context}}
+                judicial, copia que vengo en acompañar en este acto, con citación.
                 </template>
                 """
             case JudicialCollectionLegalRequest.SPONSORSHIP_AND_POWER:
