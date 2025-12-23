@@ -229,7 +229,10 @@ export default function DemandTextGeneratorPage() {
       identifier: debtor.dni,
       occupation: null,
       address: debtor.address,
-      legal_representatives: debtor.role === 'guarantee' ? null : legalRepresentativesForDemand,
+      legal_representatives:
+      debtor.role === 'guarantee' || (debtor.entity_type || 'natural') === 'natural'
+        ? null
+        : legalRepresentativesForDemand,
       type: debtor.role === 'defendant' ? 'debtor' : 'co_debtor',
       entity_type: debtor.entity_type || 'natural'
     }));
