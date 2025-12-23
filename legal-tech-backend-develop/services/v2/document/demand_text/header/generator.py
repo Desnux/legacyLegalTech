@@ -71,17 +71,17 @@ class DemandTextHeaderGenerator(BaseGenerator):
         start_idx = 1
         for defendant in self.input.defendants or []:
             lines.extend(self._process_entities("EJECUTADO", [defendant], start_idx))
-            
+
+            if defendant.entity_type == DefendantEntityType.NATURAL:
+                start_idx += 1
+                continue
+
             if (
                 defendant.entity_type == DefendantEntityType.LEGAL
                 and isinstance(defendant.legal_representatives, list)
                 and len(defendant.legal_representatives) > 0
             ):
-                lines.extend(
-                    self._process_entities(
-                        "REPRESENTANTE",
-                        defendant.legal_representatives
-                    )
-                )
+                lines.extend(self._process_entities("REPRESENTANTE", defendant.legal_representatives))
+
             start_idx += 1
         return lines
