@@ -621,7 +621,7 @@ const CaseDetails: React.FC<Props> = ({ caseId }) => {
                 <div className="flex flex-col gap-4">
                   {caseData.litigants
                     .filter((litigant) => 
-                      ['plaintiff', 'sponsoring_attorney', 'plaintiff_legal_representative', 'legal_representative'].includes(litigant.role)
+                      ['plaintiff', 'sponsoring_attorney', 'plaintiff_legal_representative'].includes(litigant.role)
                     )
                     .reduce((acc: any[], litigant) => {
                       if (litigant.role === 'legal_representative') {

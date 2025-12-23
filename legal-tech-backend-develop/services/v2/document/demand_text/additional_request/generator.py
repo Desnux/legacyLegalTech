@@ -127,7 +127,7 @@ class DemandTextAdditionalRequestGenerator(BaseGenerator):
                     )
                 return (
                     "RUEGO A US. tener presente que designo como depositario provisional de los bienes que se "
-                    "embarguen a al propio ejecutado, bajo su responsabilidad civil y criminal."
+                    "embarguen al propio ejecutado, bajo su responsabilidad civil y criminal."
                 )
             case JudicialCollectionLegalRequest.INCLUDE_DOCUMENTS:
                 description = ["documentos"]

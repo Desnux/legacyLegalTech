@@ -558,7 +558,7 @@ const CaseList = ({ title, subtitle, linkedCases = false, onDownload, onFetch, p
                       const isExpanded = expandedRows.has(c.id);
                       const plaintiff = c.litigants.find((l) => l.role === 'plaintiff')?.name || "Sin Definir";
                       const defendant = c.litigants.find((l) => l.role === 'defendant')?.name || "Sin Definir";
-                      const legal_representative = c.litigants.find((l) => l.role === 'legal_representative')?.name || "Sin Definir";
+                      const legal_representative = c.litigants.find((l) => l.role === 'legal_representative')?.name ?? null;
                       const plaintiff_legal_representative = c.litigants.find((l) => l.role === 'plaintiff_legal_representative')?.name || "Sin Definir";
                       const sponsoring_attorney = c.litigants.find((l) => l.role === 'sponsoring_attorney')?.name || "Sin Definir";
                       return (

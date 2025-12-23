@@ -214,18 +214,22 @@ export default function DemandTextGeneratorPage() {
 
     const debtorParticipants = data.participants.filter(({ role }) => role === 'defendant' || role === 'guarantee');
     const legalRepParticipants = data.participants.filter(({ role }) => role === 'legal_representative');
+    // 🔒 Blindaje: si no vino explícitamente, no existe
+    const legalRepresentativesForDemand =
+      legalRepParticipants.length > 0
+        ? legalRepParticipants.map(legalRep => ({
+            name: legalRep.name,
+            dni: legalRep.dni,
+            address: legalRep.address
+          }))
+        : null;
 
     const defendants = debtorParticipants.map(debtor => ({
       name: debtor.name,
       identifier: debtor.dni,
       occupation: null,
       address: debtor.address,
-      legal_representatives: debtor.role === 'guarantee' ? null : legalRepParticipants.map(legalRep => ({
-        name: legalRep.name,
-        identifier: legalRep.dni,
-        occupation: "",
-        address: legalRep.address
-      })),
+      legal_representatives: debtor.role === 'guarantee' ? null : legalRepresentativesForDemand,
       type: debtor.role === 'defendant' ? 'debtor' : 'co_debtor',
       entity_type: debtor.entity_type || 'natural'
     }));
