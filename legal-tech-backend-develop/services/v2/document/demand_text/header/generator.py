@@ -66,22 +66,32 @@ class DemandTextHeaderGenerator(BaseGenerator):
         return lines
 
     def _process_defendants(self) -> list[str]:
-        """Process defendants."""
         lines: list[str] = []
         start_idx = 1
+
         for defendant in self.input.defendants or []:
             lines.extend(self._process_entities("EJECUTADO", [defendant], start_idx))
 
-            if defendant.entity_type == DefendantEntityType.NATURAL:
+            # 🔒 NORMALIZACIÓN CLAVE (AQUÍ VA)
+            entity_type = defendant.entity_type
+            if isinstance(entity_type, str):
+                entity_type = entity_type.lower()
+
+            # ❌ Persona natural: NUNCA representante
+            if entity_type == "natural":
                 start_idx += 1
                 continue
 
-            if (
-                defendant.entity_type == DefendantEntityType.LEGAL
-                and isinstance(defendant.legal_representatives, list)
-                and len(defendant.legal_representatives) > 0
-            ):
-                lines.extend(self._process_entities("REPRESENTANTE", defendant.legal_representatives))
+            # ✅ Persona jurídica con representante explícito
+            if entity_type == "legal" and defendant.legal_representatives:
+                lines.extend(
+                    self._process_entities(
+                        "REPRESENTANTE",
+                        defendant.legal_representatives
+                    )
+                )
 
             start_idx += 1
+
         return lines
+
