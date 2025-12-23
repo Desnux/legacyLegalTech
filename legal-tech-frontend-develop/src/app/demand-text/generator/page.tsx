@@ -119,14 +119,9 @@ export default function DemandTextGeneratorPage() {
       context: label
     }));
     const plaintiff = DEFAULT_PARTICIPANTS.find(p => p.role === ParticipantRole.PLAINTIFF);
-    const legalRepresentatives = DEFAULT_PARTICIPANTS
-      .filter(p => p.role === ParticipantRole.PLAINTIFF_LEGAL_REPRESENTATIVE)
-      .map(({ name, dni, address }) => ({
-        name,
-        identifier: dni,
-        address,
-        occupation: "Abogado"
-      }));
+    // ❌ NO enviar representantes legales por defecto
+    const legalRepresentatives: any[] = [];
+
     const sponsoringAttorneys = DEFAULT_PARTICIPANTS
       .filter(p => p.role === ParticipantRole.SPONSORING_ATTORNEY)
       .map(({ name, dni, address }) => ({
