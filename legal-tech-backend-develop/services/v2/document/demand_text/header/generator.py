@@ -77,6 +77,15 @@ class DemandTextHeaderGenerator(BaseGenerator):
             if isinstance(entity_type, str):
                 entity_type = entity_type.lower()
 
+            print(
+                "DEBUG DEFENDANT:",
+                defendant.name,
+                entity_type,
+                type(defendant.entity_type),
+                defendant.legal_representatives
+            )
+
+
             # ❌ Persona natural: NUNCA representante
             if entity_type == "natural":
                 start_idx += 1
