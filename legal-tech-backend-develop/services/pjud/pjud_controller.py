@@ -38,6 +38,32 @@ DEFAULT_WAIT_FOR_TIMEOUT = 3000
 
 
 class PJUDController:
+
+    async def _wait_select2_closed(page, timeout=3000):
+        """
+        Espera a que el overlay de Select2 desaparezca.
+        Evita que el drop-mask intercepte clicks.
+        """
+        try:
+            await page.wait_for_selector(
+                "#select2-drop-mask",
+                state="detached",
+                timeout=timeout
+            )
+        except:
+            pass
+
+
+    async def _close_select2(page):
+        """
+        Cierra cualquier dropdown Select2 abierto
+        haciendo click fuera del componente.
+        """
+        await page.mouse.click(10, 10)
+        await page.wait_for_timeout(300)
+        await _wait_select2_closed(page)
+
+
     def log_requests(self, request: Request) -> None:
         if str(request.url).startswith("https://ojv.pjud.cl/kpitec-ojv-web/rest"):
             logging.info(f"PJUD Request: {request.method} {request.url}")
@@ -582,50 +608,42 @@ class PJUDController:
                     pjud_legal_subject = "Factura, Cobro De"
                 else:
                     pjud_legal_subject = "Obligación De Dar, Cumplimiento"
+                await self._seleccionar_materia(page, pjud_legal_subject)
                 
-                max_retries = 3
-                materia_selected = False
-                for attempt in range(1, max_retries + 1):
-                    try:
-                        logging.info(f"[PJUD] Intento {attempt}/{max_retries} de seleccionar materia...")
-                        
-                        # Si no es el primer intento, hacer click afuera para cerrar cualquier dropdown abierto
-                        if attempt > 1:
-                            logging.info("[PJUD] Cerrando dropdown abierto haciendo click afuera...")
-                            await page.locator("body").click(position={"x": 10, "y": 10})
-                            await page.wait_for_timeout(500)
-                        
-                        await page.locator("a.select2-choice.select2-default:has-text('Seleccione Materia')").click()
-                        search_box = page.locator("input.select2-input:visible")
-                        await search_box.click(force=True)
-                        await search_box.fill(pjud_legal_subject, force=True)
-                        
-                        # Presionar Enter y esperar a que se complete la selección (con timeout de 3 segundos)
-                        await search_box.press("Enter")
-                        
-                        # Esperar a que el dropdown se cierre o que aparezca el valor seleccionado
+                async def _seleccionar_materia(self, page: Page, materia: str):
+                    for intento in range(1, 4):
                         try:
-                            await page.locator(f"a.select2-choice:has-text('{pjud_legal_subject}')").wait_for(state="visible", timeout=2000)
-                            materia_selected = True
-                            logging.info(f"[PJUD] Materia seleccionada: {pjud_legal_subject}")
-                            break
-                        except TimeoutError:
-                            logging.warning(f"[PJUD] Timeout en intento {attempt} al seleccionar materia (más de 3 segundos)")
-                            if attempt < max_retries:
-                                logging.info(f"[PJUD] Reintentando selección de materia...")
-                                continue
-                            else:
-                                raise Exception(f"Timeout al seleccionar materia después de {max_retries} intentos")
-                    except Exception as e:
-                        if attempt < max_retries:
-                            logging.warning(f"[PJUD] Error en intento {attempt} de seleccionar materia: {e}. Reintentando...")
-                            continue
-                        else:
-                            logging.error(f"[PJUD] Error al seleccionar materia después de {max_retries} intentos: {e}")
-                            raise
-                
-                if not materia_selected:
-                    raise Exception(f"No se pudo seleccionar la materia después de {max_retries} intentos")
+                            logging.info(f"[PJUD] Intento {intento}/3 de seleccionar materia")
+
+                            await page.locator(
+                                "a.select2-choice.select2-default:has-text('Seleccione Materia')"
+                            ).click()
+
+                            await page.wait_for_selector("input.select2-input:visible", timeout=3000)
+                            search_box = page.locator("input.select2-input:visible")
+                            await search_box.fill(materia, force=True)
+
+                            await page.wait_for_selector(
+                                "li.select2-result-selectable",
+                                timeout=3000
+                            )
+
+                            await page.locator(
+                                "li.select2-result-selectable"
+                            ).first.click()
+
+                            await self._wait_select2_closed(page)
+
+                            logging.info(f"[PJUD] Materia seleccionada correctamente: {materia}")
+                            return
+
+                        except Exception as e:
+                            logging.warning(
+                                f"[PJUD] Error al seleccionar materia (intento {intento}): {e}"
+                            )
+                            await self._close_select2(page)
+
+                    raise Exception("No se pudo seleccionar la materia en PJUD")
 
                 logging.info("[PJUD] Agregando materia...")
                 await page.locator("button.btn.btn-primary.btn-block:has-text('Agregar')").nth(0).click()
