@@ -209,6 +209,31 @@ class PdfLoader(BaseLoader):
             s3_storage.save(s3_key, pdf_data)
             upload_time = time.time() - upload_start
             logging.info(f"  📄 [PdfLoader] [Thread {thread_id}] PDF subido a S3: s3://{s3_storage.bucket}/{s3_key} en {upload_time:.4f}s")
+
+            # 🔒 Esperar a que el objeto sea visible para Textract (consistencia S3)
+            for i in range(5):
+                try:
+                    s3_storage.s3_resource.meta.client.head_object(
+                        Bucket=s3_storage.bucket,
+                        Key=s3_key
+                    )
+                    logging.info(
+                        f"  📄 [PdfLoader] [Thread {thread_id}] "
+                        f"Objeto S3 visible para Textract"
+                    )
+                    break
+                except Exception:
+                    logging.info(
+                        f"  ⏳ [PdfLoader] [Thread {thread_id}] "
+                        f"Esperando visibilidad S3 ({i + 1}/5)..."
+                    )
+                    time.sleep(1)
+            else:
+                raise RuntimeError(
+                    f"S3 object not visible for Textract: "
+                    f"s3://{s3_storage.bucket}/{s3_key}"
+                )
+
             
             # Step 3: Extract text using Textract async method
             logging.info(f"  📄 [PdfLoader] [Thread {thread_id}] Iniciando extracción de texto con Textract (método asíncrono)...")
